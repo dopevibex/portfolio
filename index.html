@@ -873,27 +873,31 @@
           <p class="section-subhead">Procedural monolithic colosseum rendered via WebGL. Explore the 3D atmospheric lighting, obsidian monoliths, and dais geometry.</p>
         </div>
 
-        <!-- 3D Viewport Card Container -->
-        <div class="game3d-viewport-card" id="game3dViewportCard">
-          <!-- Top Floating Status & Camera Bar -->
-          <div class="game3d-top-bar">
-            <div class="game3d-status-pill">
-              <span class="game3d-status-dot"></span>
-              <span>THREE.JS 3D ENGINE &bull; 60 FPS</span>
-            </div>
-            <div class="game3d-controls-hint">
-              <span><kbd>Left Click + Drag</kbd> Orbit</span>
-              <span><kbd>Scroll</kbd> Zoom</span>
-              <span><kbd>Right Click</kbd> Pan</span>
-            </div>
-            <button type="button" class="game3d-reset-cam-btn" id="game3dResetCamBtn" title="Reset Camera">
-              <i class="fa-solid fa-arrows-rotate"></i>
-              <span>Reset Cam</span>
-            </button>
+        <!-- 3D Sanctum Action Game Entry Card -->
+        <div class="dope-game-entry-card" id="sanctumGameEntryCard">
+          <div class="dope-game-entry-badge">
+            <i class="fa-solid fa-skull"></i>
+            <span>3D ACTION COMBAT &bull; GOD-OF-WAR STYLE</span>
           </div>
-
-          <!-- Three.js Canvas Mount Node -->
-          <div class="game3d-canvas-container" id="game3dCanvasContainer"></div>
+          <h3 class="dope-game-entry-title">SANCTUM: THE BOUND SOVEREIGN</h3>
+          <p class="dope-game-entry-lore">
+            They broke your crown upon the altar stone, yet left the iron in your blood. Wield the chained Cinder Cleaver, shatter the Ashen Thralls, and claim vengeance against Malphas, The Throne Warden.
+          </p>
+          <button type="button" class="dope-game-enter-btn" id="dopeGameEnterBtn">
+            <i class="fa-solid fa-play"></i>
+            <span>ENTER THE SANCTUM</span>
+          </button>
+          <div class="dope-game-controls-bar">
+            <div class="dope-game-ctrl-item"><span>WASD</span> Move</div>
+            <div class="dope-game-ctrl-item"><span>LMB</span> Light Combo</div>
+            <div class="dope-game-ctrl-item"><span>Q</span> Heavy Breaker</div>
+            <div class="dope-game-ctrl-item"><span>RMB</span> Aim &amp; Throw</div>
+            <div class="dope-game-ctrl-item"><span>E</span> Recall</div>
+            <div class="dope-game-ctrl-item"><span>F</span> Finisher</div>
+            <div class="dope-game-ctrl-item"><span>SPACE</span> Dodge</div>
+            <div class="dope-game-ctrl-item"><span>R</span> Rage Mode</div>
+            <div class="dope-game-ctrl-item"><span>ESC</span> Exit</div>
+          </div>
         </div>
 
       </div>
@@ -1424,49 +1428,31 @@
   <!-- Core App Controller with Cache Buster -->
   <script src="app.js?v=26"></script>
 
-  <!-- 3D Sword Fighting Game Module -->
+  <!-- Scoped Sanctum Game Stylesheet -->
+  <link rel="stylesheet" href="./game/game.css" />
+
+  <!-- Lazy-Loaded 3D Sanctum Action Game Module -->
   <script type="module">
-    import { GameModule } from './game/index.js';
+    let gameInstance = null;
+    const enterBtn = document.getElementById('dopeGameEnterBtn');
 
-    function initGameModule() {
-      const container = document.getElementById('game3dCanvasContainer');
-      const resetBtn = document.getElementById('game3dResetCamBtn');
+    if (enterBtn) {
+      enterBtn.addEventListener('click', async () => {
+        try {
+          enterBtn.disabled = true;
+          enterBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>ENTERING SANCTUM...</span>';
 
-      if (!container) return;
-
-      // Mount Three.js 3D Game Foundation & Fighter
-      GameModule.mount(container);
-
-      // Camera Reset Handler
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          GameModule.resetCamera();
-        });
-      }
-
-      // Pause loop when scrolled off-screen for zero background CPU/GPU overhead
-      if (typeof IntersectionObserver !== 'undefined') {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              GameModule.resume();
-            } else {
-              GameModule.pause();
-            }
+          const { mountGame } = await import('./game/index.js');
+          gameInstance = mountGame(document.body, () => {
+            enterBtn.disabled = false;
+            enterBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>ENTER THE SANCTUM</span>';
           });
-        }, { threshold: 0.05 });
-
-        observer.observe(container);
-      }
-
-      // Clean global reference
-      window.GameModule = GameModule;
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initGameModule);
-    } else {
-      initGameModule();
+        } catch (err) {
+          console.error('[SanctumGame] Error lazy-loading game module:', err);
+          enterBtn.disabled = false;
+          enterBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>ENTER THE SANCTUM</span>';
+        }
+      });
     }
   </script>
 </body>
