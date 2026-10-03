@@ -17,9 +17,9 @@ export class CathedralArena {
     // 1. Central Flagstone Ground (Capped cylinder with stepped edge)
     const daisGeo = new THREE.CylinderGeometry(20, 20.8, 1.4, 32);
     const daisMat = new THREE.MeshStandardMaterial({
-      color: 0x12141c,
-      roughness: 0.88,
-      metalness: 0.18,
+      color: 0x222736,
+      roughness: 0.72,
+      metalness: 0.25,
       flatShading: true
     });
     this.disposables.push(daisGeo, daisMat);
@@ -32,9 +32,9 @@ export class CathedralArena {
     // 2. Outer Perimeter Barrier (Ruined low balustrade to demarcate bounds)
     const wallGeo = new THREE.RingGeometry(19.2, 20.4, 32);
     const wallMat = new THREE.MeshStandardMaterial({
-      color: 0x1e2029,
-      roughness: 0.9,
-      metalness: 0.1,
+      color: 0x2d3345,
+      roughness: 0.8,
+      metalness: 0.2,
       side: THREE.DoubleSide
     });
     this.disposables.push(wallGeo, wallMat);
@@ -50,9 +50,9 @@ export class CathedralArena {
     // Single Instanced Mesh for all 8 shattered gothic pillars (1 draw call)
     const pillarGeo = new THREE.CylinderGeometry(0.85, 1.25, 11, 8);
     const pillarMat = new THREE.MeshStandardMaterial({
-      color: 0x161822,
-      roughness: 0.85,
-      metalness: 0.15
+      color: 0x262b3a,
+      roughness: 0.78,
+      metalness: 0.22
     });
     this.disposables.push(pillarGeo, pillarMat);
 
@@ -132,10 +132,10 @@ export class CathedralArena {
     // Restrained central runic floor circle
     const runeGeo = new THREE.RingGeometry(0.2, 7.5, 48);
     const runeMat = new THREE.MeshBasicMaterial({
-      color: 0xdc2626,
+      color: 0xef4444,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.38,
       wireframe: true
     });
     this.disposables.push(runeGeo, runeMat);
@@ -146,8 +146,8 @@ export class CathedralArena {
     this.scene.add(runeRing);
 
     // Subtle Crimson Brazier Ambient Light (Center)
-    const brazierLight = new THREE.PointLight(0xdc2626, 1.4, 18, 2.0);
-    brazierLight.position.set(0, 1.2, 0);
+    const brazierLight = new THREE.PointLight(0xef4444, 16.0, 32, 1.2);
+    brazierLight.position.set(0, 2.2, 0);
     this.scene.add(brazierLight);
   }
 

@@ -37,22 +37,25 @@ export class Engine {
     this.container.appendChild(this.renderer.domElement);
 
     // 4. Directional Moonlight (Single Shadow Caster for Budget)
-    this.moonLight = new THREE.DirectionalLight(0x94a3b8, 1.1);
-    this.moonLight.position.set(15, 28, 12);
+    this.moonLight = new THREE.DirectionalLight(0xd8e4f0, 2.2);
+    this.moonLight.position.set(-12, 26, -14);
     this.moonLight.castShadow = true;
     this.moonLight.shadow.mapSize.width = 1024;
     this.moonLight.shadow.mapSize.height = 1024;
     this.moonLight.shadow.camera.near = 0.5;
     this.moonLight.shadow.camera.far = 70;
-    this.moonLight.shadow.camera.left = -18;
-    this.moonLight.shadow.camera.right = 18;
-    this.moonLight.shadow.camera.top = 18;
-    this.moonLight.shadow.camera.bottom = -18;
+    this.moonLight.shadow.camera.left = -22;
+    this.moonLight.shadow.camera.right = 22;
+    this.moonLight.shadow.camera.top = 22;
+    this.moonLight.shadow.camera.bottom = -22;
     this.moonLight.shadow.bias = -0.0006;
     this.scene.add(this.moonLight);
 
-    // 5. Ambient Fill & Rim
-    this.ambientLight = new THREE.AmbientLight(0x13151f, 0.65);
+    // 5. Ambient Fill & Rim Lighting (Hemisphere Sky/Floor + Ambient Fill)
+    this.hemiLight = new THREE.HemisphereLight(0x64748b, 0x1a1e2b, 1.3);
+    this.scene.add(this.hemiLight);
+
+    this.ambientLight = new THREE.AmbientLight(0x1e293b, 0.65);
     this.scene.add(this.ambientLight);
 
     // 6. Camera Shake & Hit-Stop State
