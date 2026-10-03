@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <radialGradient id="favGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1e42" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#050508" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="100" height="100" rx="20" fill="#06070a"/>
+  <circle cx="50" cy="50" r="42" fill="url(#favGlow)" />
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#ff1e42" stroke-width="2" stroke-dasharray="6,4"/>
+  <!-- Demonic Horns -->
+  <path d="M 28 42 C 22 24 15 15 8 18 C 16 30 26 45 32 50 Z" fill="#e11d48"/>
+  <path d="M 72 42 C 78 24 85 15 92 18 C 84 30 74 45 68 50 Z" fill="#e11d48"/>
+  <!-- Cyber Skull Face -->
+  <polygon points="50,22 68,38 65,65 50,82 35,65 32,38" fill="#12131c" stroke="#ff1e42" stroke-width="2"/>
+  <!-- Glowing Eyes -->
+  <polygon points="40,46 47,49 41,55" fill="#ff0033"/>
+  <polygon points="60,46 53,49 59,55" fill="#ff0033"/>
+  <!-- Fangs -->
+  <polygon points="44,68 47,75 50,68 53,75 56,68" fill="#ffffff"/>
+  <!-- Spikes -->
+  <line x1="50" y1="8" x2="50" y2="20" stroke="#ff1e42" stroke-width="2.5"/>
+</svg>

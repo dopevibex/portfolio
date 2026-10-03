@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0c10" />
+      <stop offset="50%" stop-color="#14080e" />
+      <stop offset="100%" stop-color="#050508" />
+    </linearGradient>
+    <linearGradient id="redGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff1e42" />
+      <stop offset="100%" stop-color="#990018" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+  
+  <!-- Cyber Grid Lines -->
+  <g stroke="#ff1e42" stroke-opacity="0.1" stroke-width="1">
+    <line x1="0" y1="50" x2="800" y2="50" />
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="250" x2="800" y2="250" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="350" x2="800" y2="350" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="100" y1="0" x2="100" y2="450" />
+    <line x1="200" y1="0" x2="200" y2="450" />
+    <line x1="300" y1="0" x2="300" y2="450" />
+    <line x1="400" y1="0" x2="400" y2="450" />
+    <line x1="500" y1="0" x2="500" y2="450" />
+    <line x1="600" y1="0" x2="600" y2="450" />
+    <line x1="700" y1="0" x2="700" y2="450" />
+  </g>
+
+  <!-- UI Window Container -->
+  <rect x="50" y="40" width="700" height="370" rx="10" fill="#0d0e15" stroke="#ff1e42" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" />
+
+  <!-- Window Header -->
+  <rect x="50" y="40" width="700" height="40" rx="10" fill="#181926" />
+  <circle cx="80" cy="60" r="5" fill="#ff1e42" />
+  <circle cx="98" cy="60" r="5" fill="#eab308" />
+  <circle cx="116" cy="60" r="5" fill="#22c55e" />
+  <text x="400" y="65" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa" text-anchor="middle" letter-spacing="2">HOMEFIX QUETTA // SERVICE DISPATCH NEXUS</text>
+
+  <!-- Content Graphic Layout -->
+  <!-- Left Column: Service Directory Card -->
+  <rect x="80" y="105" width="300" height="275" rx="8" fill="#12131d" stroke="#27273a" stroke-width="1" />
+  <rect x="100" y="125" width="140" height="18" rx="4" fill="#ff1e42" fill-opacity="0.2" stroke="#ff1e42" stroke-width="1" />
+  <text x="110" y="138" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ff4d6d" font-weight="bold">SERVICE DISPATCH</text>
+  
+  <text x="100" y="175" font-family="'Outfit', sans-serif" font-size="22" fill="#ffffff" font-weight="bold">HomeFix Quetta</text>
+  <text x="100" y="198" font-family="'Inter', sans-serif" font-size="12" fill="#9ca3af">Local On-Demand Home Repair &amp; Maintenance</text>
+
+  <!-- Status badges -->
+  <rect x="100" y="225" width="80" height="24" rx="4" fill="#1f293d" />
+  <text x="140" y="241" font-family="'JetBrains Mono', monospace" font-size="10" fill="#60a5fa" text-anchor="middle">PHP / MySQL</text>
+
+  <rect x="190" y="225" width="80" height="24" rx="4" fill="#2d1a24" />
+  <text x="230" y="241" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f43f5e" text-anchor="middle">Bootstrap 5</text>
+
+  <rect x="100" y="260" width="260" height="90" rx="6" fill="#08090d" stroke="#ff1e42" stroke-width="1" stroke-opacity="0.3" />
+  <text x="115" y="285" font-family="'JetBrains Mono', monospace" font-size="11" fill="#22c55e">✓ Dynamic Service Booking</text>
+  <text x="115" y="308" font-family="'JetBrains Mono', monospace" font-size="11" fill="#22c55e">✓ Technician Dispatch Matrix</text>
+  <text x="115" y="331" font-family="'JetBrains Mono', monospace" font-size="11" fill="#22c55e">✓ Relational Database Schemas</text>
+
+  <!-- Right Column: System Metrics & Cyber Diagram -->
+  <rect x="410" y="105" width="310" height="275" rx="8" fill="#12131d" stroke="#27273a" stroke-width="1" />
+  
+  <!-- Mini Dashboard widgets -->
+  <rect x="430" y="125" width="125" height="70" rx="6" fill="#08090d" stroke="#ff1e42" stroke-width="1" stroke-opacity="0.3" />
+  <text x="445" y="148" font-family="'JetBrains Mono', monospace" font-size="10" fill="#71717a">DEPLOY STATUS</text>
+  <text x="445" y="175" font-family="'JetBrains Mono', monospace" font-size="16" fill="#ff1e42" font-weight="bold">ONLINE 100%</text>
+
+  <rect x="575" y="125" width="125" height="70" rx="6" fill="#08090d" stroke="#ff1e42" stroke-width="1" stroke-opacity="0.3" />
+  <text x="590" y="148" font-family="'JetBrains Mono', monospace" font-size="10" fill="#71717a">ARCHITECTURE</text>
+  <text x="590" y="175" font-family="'JetBrains Mono', monospace" font-size="16" fill="#60a5fa" font-weight="bold">FULL-STACK</text>
+
+  <!-- Schema wireframe -->
+  <rect x="430" y="210" width="270" height="140" rx="6" fill="#090a10" stroke="#ff1e42" stroke-opacity="0.2" stroke-width="1" />
+  <text x="445" y="235" font-family="'JetBrains Mono', monospace" font-size="10" fill="#eab308">SQL SCHEMA: homefix_db</text>
+  <path d="M 445 250 L 685 250 M 445 275 L 685 275 M 445 300 L 685 300 M 445 325 L 685 325" stroke="#1f2430" stroke-width="1" />
+  <text x="450" y="267" font-family="'JetBrains Mono', monospace" font-size="9" fill="#9ca3af">01 | tbl_services (id, cat_id, title, price, status)</text>
+  <text x="450" y="292" font-family="'JetBrains Mono', monospace" font-size="9" fill="#9ca3af">02 | tbl_bookings (id, cust_id, tech_id, schedule)</text>
+  <text x="450" y="317" font-family="'JetBrains Mono', monospace" font-size="9" fill="#9ca3af">03 | tbl_reviews (id, booking_id, rating, feedback)</text>
+  <text x="450" y="340" font-family="'JetBrains Mono', monospace" font-size="9" fill="#ff4d6d">04 | tbl_technicians (id, name, skill, verified)</text>
+</svg>

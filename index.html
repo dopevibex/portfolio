@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DOPE</title>
+  
+  <meta name="description" content="Official portfolio of DOPE. Full-Stack Developer, IT Graduate, Cybersecurity &amp; SOC practitioner, and AI Engineer." />
+  <meta name="keywords" content="DOPE, Full-Stack Developer, Cybersecurity, Vubix, Next.js, React, PHP, MySQL, SOC, AI Engineering, Discord dopevibez" />
+  <meta name="author" content="DOPE" />
+  <meta name="theme-color" content="#050508" />
+
+  <!-- Open Graph / Discord Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DOPE | Full-Stack Developer &amp; Security Practitioner" />
+  <meta property="og:description" content="Developer , Inviolable , Sovereign. Modern web apps, defensive security, and AI workflows." />
+  <meta property="og:image" content="assets/dope-crown-logo.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+
+  <!-- Google Fonts: Script-Kittens Luxury Gothic & Modern Type -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,700;1,800;1,900&family=Cinzel:wght@700;800;900&family=Cinzel+Decorative:wght@700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@600;700;800;900&family=UnifrakturCook:wght@700&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Main Stylesheet with Cache Buster -->
+  <link rel="stylesheet" href="styles.css?v=36" />
+
+  <!-- Three.js ES Module Importmap -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./assets/vendor/three/three.module.js",
+      "three/addons/": "./assets/vendor/three/"
+    }
+  }
+  </script>
+
+  <!-- GSAP for Smooth Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="demonic-body">
+
+  <!-- Real T-KT Anime Soundtrack Audio Element -->
+  <audio id="bgAudio" src="assets/t-kt-theme.mp3" preload="auto" loop autoplay playsinline></audio>
+
+  <!-- ========================================== -->
+  <!-- 00. DEMONIC GATE TEAR PRELOADER            -->
+  <!-- ========================================== -->
+  <div id="preloader" class="preloader-overlay">
+    <!-- Left Curtain -->
+    <div class="pl-curtain pl-curtain--left"></div>
+    <!-- Right Curtain -->
+    <div class="pl-curtain pl-curtain--right"></div>
+
+    <!-- Center Seam Line with Energy Fill -->
+    <div class="pl-seam-line">
+      <div class="pl-seam-fill"></div>
+    </div>
+  </div>
+
+  <canvas id="emberCanvas" class="ember-canvas"></canvas>
+
+  <!-- ========================================== -->
+  <!-- 01. TOP FLOATING NAVBAR (DEMONIC CYBER-GOTHIC) -->
+  <!-- ========================================== -->
+  <header class="top-navbar" id="topNavbar">
+    <div class="nav-inner-pill">
+      
+      <!-- Brand Logo: Crown & Thorns DOPE -->
+      <a href="#hero" class="nav-logo" aria-label="DOPE Home">
+        <img src="assets/dope-crown-logo.png?v=4" alt="DOPE Crown Logo" class="nav-crown-logo-img" />
+        <span class="nav-logo-title-gothic">DOPE</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link" data-section="about">Identity</a>
+        <a href="#arena3d" class="nav-link" data-section="arena3d">Arena</a>
+        <a href="#skills" class="nav-link" data-section="skills">Arsenal</a>
+        <a href="#work" class="nav-link" data-section="work">Projects</a>
+        <a href="#journey" class="nav-link" data-section="journey">Chronicles</a>
+        <a href="#contact" class="nav-link" data-section="contact">Nexus</a>
+      </nav>
+
+      <div class="nav-divider"></div>
+
+      <!-- Right Action Controls -->
+      <div class="nav-actions">
+        <!-- T-KT Audio Soundtrack Toggle -->
+        <button class="nav-btn-audio" id="audioToggleBtn" title="Play T-KT Theme Soundtrack" aria-label="Toggle Audio">
+          <div class="eq-bars">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </div>
+          <span class="audio-txt" id="audioStatusTxt">AUDIO OFF</span>
+        </button>
+
+        <!-- Replay Gate Opening -->
+        <button class="nav-btn-icon" id="replayGateBtn" title="Replay Gate Opening" aria-label="Replay Gate">
+          <i class="fa-solid fa-door-open"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span class="menu-bar bar-1"></span>
+          <span class="menu-bar bar-2"></span>
+          <span class="menu-bar bar-3"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Demonic Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img src="assets/dope-crown-logo.png?v=4" alt="DOPE Crown Logo" class="drawer-crown-img" />
+        <span class="drawer-title-gothic">DOPE</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="drawer-thorn-line"></div>
+
+    <nav class="drawer-nav-links">
+      <a href="#about" class="drawer-link" data-section="about">
+        <span class="drawer-link-num">01</span>
+        <span class="drawer-link-txt">Identity</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+      <a href="#arena3d" class="drawer-link" data-section="arena3d">
+        <span class="drawer-link-num">02</span>
+        <span class="drawer-link-txt">Sanctum Arena (3D)</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+      <a href="#skills" class="drawer-link" data-section="skills">
+        <span class="drawer-link-num">03</span>
+        <span class="drawer-link-txt">Arsenal</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+      <a href="#work" class="drawer-link" data-section="work">
+        <span class="drawer-link-num">04</span>
+        <span class="drawer-link-txt">Projects</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+      <a href="#journey" class="drawer-link" data-section="journey">
+        <span class="drawer-link-num">05</span>
+        <span class="drawer-link-txt">Chronicles</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+      <a href="#contact" class="drawer-link" data-section="contact">
+        <span class="drawer-link-num">06</span>
+        <span class="drawer-link-txt">Nexus</span>
+        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
+      </a>
+    </nav>
+
+    <div class="drawer-actions">
+      <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="btn-pill-white drawer-action-btn">
+        <i class="fa-brands fa-discord"></i>
+        <span>Connect on Discord</span>
+      </a>
+      <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="btn-pill-dark drawer-action-btn">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub Repositories</span>
+      </a>
+    </div>
+
+    <div class="drawer-footer-note">
+      <span>DEVELOPER · INVIOLABLE · SOVEREIGN</span>
+    </div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main class="content-wrapper" id="mainContent">
+
+    <!-- ========================================== -->
+    <!-- 02. HERO SECTION (SCRIPT-KITTENS STYLE)    -->
+    <!-- ========================================== -->
+    <section class="hero-section" id="hero">
+      <div class="section-container hero-grid">
+        
+        <!-- Left Hero Column -->
+        <div class="hero-text-col">
+          <span class="hero-kicker">FULL-STACK DEVELOPER &amp; CYBER DEFENSE</span>
+
+          <!-- Script-Kittens Bold & Italic Red Typography -->
+          <h1 class="hero-main-title">DOPE</h1>
+          <p class="hero-italic-subtitle">Developer , Inviolable , Sovereign.</p>
+
+          <p class="hero-description">
+            Building modern web applications, reliable backend systems, and practical cybersecurity tools. Focused on clean code, strong performance, and dependable engineering.
+          </p>
+
+          <!-- Pill Button CTAs -->
+          <div class="hero-btn-row">
+            <a href="#work" class="btn-pill-white">
+              <span>View Project</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="btn-pill-dark" id="heroDiscordBtn">
+              <i class="fa-brands fa-discord"></i>
+              <span>Discord</span>
+            </a>
+          </div>
+
+          <!-- Script-Kittens Style Counter Stats Row -->
+          <div class="hero-stats-row">
+            <div class="stat-item">
+              <span class="stat-number">100<span class="stat-sym">%</span></span>
+              <span class="stat-label">CODE INTEGRITY</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">VUBIX</span>
+              <span class="stat-label">FULL-STACK APP</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">0<span class="stat-sym">-TRACE</span></span>
+              <span class="stat-label">DEFENSIVE SECURITY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Column: Spiky Death Metal DOPE (Seamless Floating, No Card Box!) -->
+        <div class="hero-deathmetal-floating-wrap">
+          <img src="assets/dope-deathmetal-hero.png" alt="DOPE Spiky Death Metal Artwork" class="hero-deathmetal-floating-img" />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 02. IDENTITY SECTION (SOVEREIGN SPIRIT)    -->
+    <!-- ========================================== -->
+    <section class="section-block" id="about">
+      <div class="section-container">
+        
+        <!-- Script-Kittens Spirit Death-Metal Title Header -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag">SOVEREIGN SPIRIT</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <div class="identity-title-stage" id="identityStage">
+              <canvas class="identity-electric-canvas" id="identityElectricCanvas"></canvas>
+              <img src="assets/title-identity.png" alt="IDENTITY" class="identity-sword-graphic" id="identitySwordGraphic" />
+              <div class="metal-blade-sheen"></div>
+            </div>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Building clean web applications, dependable backend systems, and practical cybersecurity tools.</p>
+        </div>
+
+        <div class="about-cards-grid">
+          
+          <!-- Left Bio Glass Card -->
+          <div class="luxury-glass-card bio-highlight-card">
+            <div class="bio-top-row">
+              <div class="bio-avatar-badge">
+                <img src="assets/dope-crown-logo.png?v=3" alt="DOPE Crown" />
+              </div>
+              <div class="bio-title-wrap">
+                <h3 class="bio-main-name">DOPE</h3>
+                <span class="bio-sub-title">Full-Stack Developer</span>
+              </div>
+            </div>
+
+            <div class="bio-body-text">
+              <p>
+                I build clean, fast web applications and backends using Next.js, React, Node.js, and PHP. I hold a Bachelor's in Information Technology and spend my time building full-stack projects like <strong>Vubix</strong>.
+              </p>
+              <p>
+                I also have hands-on experience in defensive cybersecurity, network traffic analysis, and using modern AI tools to code faster and ship solid products.
+              </p>
+            </div>
+
+            <div class="bio-credentials-row">
+              <div class="cred-pill"><i class="fa-solid fa-graduation-cap"></i> IT Graduate</div>
+              <div class="cred-pill"><i class="fa-solid fa-shield-halved"></i> Cyber Defense</div>
+              <div class="cred-pill"><i class="fa-solid fa-code"></i> Full-Stack Dev</div>
+            </div>
+          </div>
+
+          <!-- Right Pillars Grid -->
+          <div class="pillars-glass-grid">
+            
+            <div class="luxury-glass-card pillar-glass-item">
+              <div class="pillar-glass-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+              <div>
+                <h4 class="pillar-glass-title">Full-Stack Development</h4>
+                <p class="pillar-glass-desc">Modern frontend interfaces in Next.js and React, paired with clean server logic and SQL/NoSQL databases.</p>
+              </div>
+            </div>
+
+            <div class="luxury-glass-card pillar-glass-item">
+              <div class="pillar-glass-icon"><i class="fa-solid fa-shield-virus"></i></div>
+              <div>
+                <h4 class="pillar-glass-title">Cybersecurity &amp; SOC</h4>
+                <p class="pillar-glass-desc">Defensive threat assessment, network traffic analysis, log auditing, incident response, and proactive system hardening.</p>
+              </div>
+            </div>
+
+            <div class="luxury-glass-card pillar-glass-item">
+              <div class="pillar-glass-icon"><i class="fa-solid fa-robot"></i></div>
+              <div>
+                <h4 class="pillar-glass-title">AI Agents &amp; Vibe Workflows</h4>
+                <p class="pillar-glass-desc">Context engineering, Model Context Protocol (MCP), Cursor YOLO mode, and multi-agent developer sandboxing.</p>
+              </div>
+            </div>
+
+            <div class="luxury-glass-card pillar-glass-item">
+              <div class="pillar-glass-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <div>
+                <h4 class="pillar-glass-title">Systems &amp; IT Infrastructure</h4>
+                <p class="pillar-glass-desc">Operating systems diagnostics, TCP/IP networking stack troubleshooting, client infrastructure, and command-line automation.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="marquee-section" id="skills-marquee">
+      <!-- Demonic Section Header: DOMAIN (Matching IDENTITY Structure) -->
+      <div class="section-container">
+        <div class="demonic-section-header">
+          <span class="header-top-tag">REALM OF MASTERY</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <div class="domain-title-stage" id="domainStage">
+              <img src="assets/title-domain.png" alt="DOMAIN" class="domain-3d-graphic" id="domainTitleGraphic" />
+            </div>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Specialized stacks, gaming universe, and technical devotions.</p>
+        </div>
+      </div>
+
+      <!-- Top Marquee Row: Moves LEFT (Skills, Games & Passions) -->
+      <div class="marquee-row-wrap marquee-left">
+        <div class="marquee-track">
+
+          <!-- Item: HTML5 -->
+          <div class="sk-marquee-item sk-item-md" title="HTML5">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.5 2h19l-1.8 17.5L12 22l-7.7-2.5L2.5 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 6.5h12l-.4 3.5H9.5l.2 2.5h5.8l-.5 4.5-3 1-3-1-.2-2h-2l.3 3.5 4.9 1.5 4.9-1.5.8-8.5H6V6.5z"/>
+            </svg>
+          </div>
+          
+          <!-- Item: CS:GO (Counter-Strike: Global Offensive) -->
+          <div class="sk-marquee-item sk-item-lg" title="Counter-Strike: Global Offensive">
+            <svg class="sk-svg-brand" viewBox="0 0 260 64" fill="currentColor">
+              <!-- Letters CS -->
+              <path d="M 50,22 H 26 C 14,22 8,28 8,38 V 46 C 8,56 14,62 26,62 H 50 V 51 H 26 C 20,51 18,49 18,44 V 40 C 18,35 20,33 26,33 H 50 Z"/>
+              <path d="M 94,22 H 68 C 56,22 52,27 52,34 V 36 C 52,42 56,44 66,45 L 82,47 C 88,48 90,49 90,52 C 90,55 87,56 82,56 H 52 V 62 H 82 C 94,62 100,57 100,50 V 48 C 100,42 96,40 86,39 L 70,37 C 64,36 62,35 62,32 C 62,29 65,28 70,28 H 94 Z"/>
+              
+              <!-- Central Counter-Terrorist Soldier Figure -->
+              <g transform="translate(100, 4) scale(2.45)">
+                <path d="M21.7101 3.2348a.0218.0218 0 0 1-.0216-.0215c.001-.0815.003-.3698.004-.424 0-.1292-.1428-.1831-.2117-.0829-.0113.016-.1457.212-.2287.3323a.0244.0244 0 0 1-.0198.0103h-6.5508a.0473.0473 0 0 1-.0473-.0463l-.0131-.177a.0477.0477 0 0 1 .056-.0477l.335.0319a.059.059 0 0 0 .0624-.0445l.2441-.989a.0475.0475 0 0 0-.0295-.0542l-.2268-.0848a.0427.0427 0 0 1-.0263-.0295c-.0412-.1722-.3766-1.3235-1.9935-1.581-.7867-.125-1.302.2107-1.577.4784a1.594 1.594 0 0 0-.3018.4095l-.0965.2125c-.008.0164-.046.2157-.046.234l.0513.9815a.109.109 0 0 0 .0422.0856l.3546.153-.1958.3244a.055.055 0 0 1-.053.0402s-.417.0108-.6227.0192c-.3856.0155-1.2444.4858-1.8773 1.8385-.6219 1.3282-.724 1.5496-.724 1.5496a.0736.0736 0 0 1-.0684.0398l-.5776.0019c-.0356 0-.0736.0285-.0886.0608l-.8982 2.5428c-.0149.0323-.006.081.0173.1081l.627.3918a.059.059 0 0 1 .0195.059l-.3274.9664a.1916.1916 0 0 1-.0235.0618l-.4343.3824a.1056.1056 0 0 0-.0356.059l-.5978 1.5308a.0632.0632 0 0 1-.0608.0455l-.3355.0018a.1633.1633 0 0 0-.162.1488l-.2007 2.2883a1.7194 1.7194 0 0 1-.0159.1207l-.1583.908a.128.128 0 0 1-.0333.0553l-.5584.4263c-.2559.2443-.5988.6903-.7665 1.0015l-1.86 3.9235c-.045.0833-.0811.227-.0788.3221l.1321.2354c.002.0842-.0319.4559-.0707.5307L.817 23.6545a.0985.0985 0 0 0-.003.0856l.0309.0706.0932.1859 1.8913.0029c.1173.0106.247-.1396.2507-.3005l.1027-1.2965-.0268-.1952 3.6063-4.232c.0942-.1146.222-.3168.2861-.4506l1.7186-3.7892a.1712.1712 0 0 1 .1004-.088l.1086-.035a.1694.1694 0 0 1 .1827.0528c.1505.1807.5042.781.6765 1.0315.1425.2079.8495 1.2304 1.1582 1.5675.0853.0926.3481.198.4658.2696a.083.083 0 0 1 .029.1119l-1.0298 1.8083-.4549 2.1357a.9542.9542 0 0 0-.0356.1526l-.4118 1.4831c.003.1873-.141.2856-.1527.5064l-.15 1.084a.0581.0581 0 0 0 .0582.0614l2.5445.014c.0951-.0003.1902-.0045.2854-.0067a1.1049 1.1049 0 0 0 .0755-.0069c.1242-.0158.5629-.0754.75-.1503.1097-.0388.1809-.0819.2268-.1295.1855-.1935.2002-.278.2034-.3975.001-.0212-.011-.0726-.0283-.1049-.0053-.0117-.0316-.0382-.059-.0477l-1.1815-.3562a.3693.3693 0 0 1-.1889-.1338l-.3172-.469a.0865.0865 0 0 1 .0173-.0973l.618-.609a.2017.2017 0 0 0 .0483-.072l1.9036-4.488c.089-.285.0595-.6056 0-.9445-.044-.2504-.6854-1.3264-.8532-1.6236-.1476-.262-1.0677-1.8707-1.286-2.2517-.0793-.1376-.1894-.1328-.2287-.276l-.0726-1.1173a.0398.0398 0 0 1 .0356-.0505l.3312-.0276a.093.093 0 0 0 .0741-.0487l1.147-2.1544a.0958.0958 0 0 0-.002-.094l-.2349-.2907a.0874.0874 0 0 1-.001-.0875l.3515-.3796a.054.054 0 0 1 .0736-.0206l.9343.5266a.3819.3819 0 0 0 .186.0505c.259-.0019.6858-.1549.908-.2906a.3833.3833 0 0 0 .1386-.148l.4583-1.0703c.006-.0136.0262-.0117.029.0028l.1278.5953a.0635.0635 0 0 0 .0788.0501l1.3494-.3a.0662.0662 0 0 0 .05-.0786l-.318-1.3437a.0716.0716 0 0 1 .009-.0534l.1313-.2036a.281.281 0 0 0 .036-.0814l.1589-.725a.0408.0408 0 0 1 .0397-.0323l3.7327.0047a.0916.0916 0 0 0 .0932-.0931v-.6336a.022.022 0 0 1 .0216-.0216h1.4393a.0465.0465 0 0 0 .0464-.0463v-.2855a.0465.0465 0 0 0-.0464-.0463h-1.4398z"/>
+              </g>
+
+              <!-- Letters GO -->
+              <path d="M 194,22 H 168 C 156,22 150,28 150,38 V 46 C 150,56 156,62 168,62 H 194 V 45 H 180 V 52 H 168 C 162,52 160,50 160,45 V 39 C 160,34 162,33 168,33 H 194 Z"/>
+              <path d="M 218,22 C 206,22 200,28 200,38 V 46 C 200,56 206,62 218,62 H 230 C 242,62 248,56 248,46 V 38 C 248,28 242,22 230,22 Z M 230,33 C 236,33 238,35 238,40 V 44 C 238,49 236,51 230,51 H 218 C 212,51 210,49 210,44 V 40 C 210,35 212,33 218,33 Z"/>
+              
+              <!-- Registered Symbol -->
+              <circle cx="253" cy="25" r="3.2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+              <text x="253" y="27.5" font-family="'Inter', 'Arial', sans-serif" font-size="4.8" font-weight="900" text-anchor="middle" fill="currentColor">R</text>
+            </svg>
+          </div>
+
+          <!-- Item: REACT -->
+          <div class="sk-marquee-item sk-item-md" title="React.js">
+            <svg class="sk-svg-brand" viewBox="-11.5 -10.23174 23 20.46348" fill="currentColor">
+              <circle cx="0" cy="0" r="2.05" fill="currentColor"/>
+              <g stroke="currentColor" stroke-width="1.1" fill="none">
+                <ellipse rx="11" ry="4.2"/>
+                <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+                <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Item: PHP -->
+          <div class="sk-marquee-item sk-item-lg" title="PHP">
+            <svg class="sk-svg-brand" viewBox="0 28 128 72" fill="currentColor">
+              <path d="M64 30.332C28.654 30.332 0 45.407 0 64s28.654 33.668 64 33.668c35.345 0 64-15.075 64-33.668S99.346 30.332 64 30.332zm-5.982 9.81h7.293v.003l-1.745 8.968h6.496c4.087 0 6.908.714 8.458 2.139 1.553 1.427 2.017 3.737 1.398 6.93l-3.053 15.7h-7.408l2.902-14.929c.33-1.698.208-2.855-.365-3.473-.573-.617-1.793-.925-3.658-.925h-5.828L58.752 73.88h-7.291l6.557-33.738zM26.73 49.114h14.133c4.252 0 7.355 1.116 9.305 3.348 1.95 2.232 2.536 5.346 1.758 9.346-.32 1.649-.863 3.154-1.625 4.52-.763 1.364-1.76 2.613-2.99 3.745-1.468 1.373-3.098 2.353-4.891 2.936-1.794.585-4.08.875-6.858.875h-6.294l-1.745 8.97h-7.35l6.557-33.74zm57.366 0h14.13c4.252 0 7.353 1.116 9.303 3.348h.002c1.95 2.232 2.538 5.346 1.76 9.346-.32 1.649-.861 3.154-1.623 4.52-.763 1.364-1.76 2.613-2.992 3.745-1.467 1.373-3.098 2.353-4.893 2.936-1.794.585-4.077.875-6.855.875h-6.295l-1.744 8.97h-7.35l6.557-33.74zm-51.051 5.325-2.742 14.12h4.468c2.963 0 5.172-.556 6.622-1.673 1.45-1.116 2.428-2.981 2.937-5.592.485-2.507.264-4.279-.666-5.309-.93-1.032-2.79-1.547-5.584-1.547h-5.035zm57.363 0-2.744 14.12h4.47c2.965 0 5.17-.556 6.622-1.673 1.449-1.116 2.427-2.981 2.935-5.592.487-2.507.266-4.279-.664-5.309-.93-1.032-2.792-1.547-5.584-1.547h-5.035z"/>
+            </svg>
+          </div>
+
+          <!-- Item: FORTNITE (Exact Script-Kittens Vector) -->
+          <div class="sk-marquee-item sk-item-xl" title="Fortnite">
+            <svg class="sk-svg-brand" viewBox="0 0 1581 441" fill="currentColor">
+              <path d="M0 220.5C0 341.8.3 441 .7 441c.6 0 82.1-15.1 92.1-17.1l5.2-1V261h62v-14.8c0-8.1.3-29.2.7-47l.6-32.2H98V96h36.5c20.1 0 36.5-.2 36.5-.5 0-1.1 8-86.5 8.5-90.8l.6-4.7H0zM1495.8 12.9l-79.8 6.6v398.4l3.3.5c2.9.5 157.4 11.7 160.5 11.6.9 0 1.2-10.6 1.2-49.5V331h-68v-72h58v-86h-60v-57l2.3-.4c1.2-.3 11.4-.7 22.7-1.1 11.3-.3 26-.8 32.8-1.2l12.2-.6V6l-2.7.1c-1.6.1-38.7 3.1-82.5 6.8zM983.5 26.7c1 10 12.4 160.7 12.2 160.9-.1.2-14.8-35.9-32.7-80.2-17.8-44.3-32.8-81-33.2-81.7-.6-1.1-28.2 4-73.5 13.6l-4.3.9V384h89l-.5-7.2c-1-13.4-4.7-124.2-4.3-128.6.3-3.9 3.3 2.9 31.7 71.5 17.2 41.7 31.8 76.2 32.2 76.8.6.6 14.5-.3 38.1-2.3 20.5-1.8 37.3-3.4 37.3-3.5.1-.1-.4-72.2-1.1-160.2s-1.3-171.1-1.3-184.8L1073 21h-90.1zM279.5 27.1c-59.8 4-92.7 44.9-103.1 127.9-2.1 17.2-3 75.6-1.5 96 5 66.2 22.9 109.2 54.7 131.1 17.1 11.7 42.8 18 68.2 16.5 28.9-1.6 48.6-9.8 66.3-27.5 14.5-14.5 22.4-28.1 30-51.3 10.6-32.4 15.4-80.8 13-131.2-2.7-56.4-11.2-91.5-28.7-118.4-16.7-25.6-43.1-40.9-73.9-42.8-4.9-.3-10.1-.6-11.5-.8-1.4-.1-7.4.1-13.5.5zm14.1 78.6c7.3 7.9 10.4 39.4 10.4 106.8 0 83-5.2 117.5-16.6 110.1-4.9-3.3-8.6-19.4-10.4-46.1-1.3-19.5-1.3-108.8 0-127.5 1.9-26.4 5.3-41 10.4-44.5 2.8-2 3.3-1.9 6.2 1.2zM420 208.9V391H511.7l.6-12.7c.4-7.1 1.2-30.1 1.8-51.3s1.4-39.8 1.8-41.3c.5-2.1 4.8 11.4 18 57 9.6 32.9 17.7 60.2 18.1 60.6.8.9 94.6-6.5 95.6-7.5.3-.4-10.1-33.1-23.1-72.9l-23.6-72.2 5-4.4c16.6-14.5 30.3-42.5 34.2-70.2 1.7-12.1.6-42.1-2-53.2-10-43.5-36.5-77.3-70.3-89.9-14.7-5.4-13.5-5.3-83-5.7l-64.8-.4zm103.1-95.8c7.1 3.5 12.9 12.5 16 24.9 2.1 8.3 1.8 34.6-.5 43-4.3 15.8-11.9 25-23.3 28.5l-2.3.6V110l3.3.7c1.7.3 4.8 1.4 6.8 2.4zM643 74.5V121h51v268h96V137h52V44l-2.2-.4C837.7 43.1 647 27.9 644.3 28c-1 0-1.3 10-1.3 46.5zM1094 219.5V401h99V38h-99zM1306 50.6c-54.2 2.9-99.3 5.3-100.2 5.3-1.7.1-1.8 3-1.8 47.1v47h51v263h97V139h54V92c0-25.9-.3-46.9-.7-46.9-.5.1-45.1 2.5-99.3 5.5z"/>
+            </svg>
+          </div>
+          
+          <!-- Item: JAVASCRIPT -->
+          <div class="sk-marquee-item sk-item-md" title="JavaScript (ES6+)">
+            <svg class="sk-svg-brand" viewBox="0 0 54 54" fill="currentColor">
+              <rect x="2" y="2" width="50" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="3.5"/>
+              <text x="27" y="38" font-family="'Outfit', 'Inter', sans-serif" font-size="28" font-weight="900" letter-spacing="-1" text-anchor="middle" fill="currentColor">JS</text>
+            </svg>
+          </div>
+          
+          <!-- Item: VUBIX -->
+          <div class="sk-marquee-item sk-item-xl" title="Vubix Platform">
+            <svg class="sk-svg-brand" viewBox="0 0 220 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Cinzel Decorative', 'Syne', serif" font-size="46" font-weight="900" letter-spacing="6" fill="currentColor">VUBIX</text>
+            </svg>
+          </div>
+
+          <!-- Item: GOD OF WAR (Kratos) -->
+          <div class="sk-marquee-item sk-item-char" title="God of War - Kratos">
+            <img src="assets/gow-kratos-icon.png" alt="God of War - Kratos" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: NODE.JS -->
+          <div class="sk-marquee-item sk-item-xl" title="Node.js">
+            <svg class="sk-svg-brand" viewBox="0 0 240 60" fill="currentColor">
+              <polygon points="25,5 45,16.5 45,39.5 25,51 5,39.5 5,16.5" fill="none" stroke="currentColor" stroke-width="4"/>
+              <circle cx="25" cy="28" r="7" fill="currentColor"/>
+              <text x="56" y="42" font-family="'Outfit', 'Inter', sans-serif" font-size="40" font-weight="800" letter-spacing="2" fill="currentColor">NODE<tspan font-weight="900" fill="var(--crimson-accent, #ff1e42)">.JS</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: CHESS -->
+          <div class="sk-marquee-item sk-item-lg" title="Chess">
+            <svg class="sk-svg-brand" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10c10.5 1 16.5 8 16 29H15c0-9 10-6.5 8-21" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M24 18c.38 2.91-5.55 7.37-8 9-3 2-2.82 4.34-5 4-1.042-.94 1.41-3.04 0-3-1 0 .19 1.23-1 2-1 0-4.003 1-4-4 0-2 6-12 6-12s1.89-1.9 2-3.5c-.73-.994-.5-2-.5-3 1-1 3 2.5 3 2.5h2s.78-1.992 2.5-3c1 0 1 3 1 3" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="9" cy="25.5" r="0.8" fill="#0d0609" stroke="#0d0609" stroke-width="0.5"/>
+                <ellipse cx="14.5" cy="15.5" rx="0.6" ry="1.2" transform="rotate(30 14.5 15.5)" fill="#0d0609" stroke="#0d0609" stroke-width="0.5"/>
+                <path d="M15 15.5c2 1 4 5 4 8" stroke="#0d0609" stroke-width="1.5" fill="none"/>
+                <path d="M24 18c-2 2-6 5-9 6" stroke="#0d0609" stroke-width="1.5" fill="none"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Item: ANIME (Eren Yeager) -->
+          <div class="sk-marquee-item sk-item-char" title="Anime - Eren Yeager">
+            <img src="assets/eren-avatar-crimson.png" alt="Anime - Eren Yeager" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: GIT -->
+          <div class="sk-marquee-item sk-item-md" title="Git">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.126 0L8.808 2.585l3.52 3.52a1.782 1.782 0 0 1 2.257 2.257l3.385 3.385a1.782 1.782 0 0 1 1.97 2.924 1.782 1.782 0 0 1-2.923-1.97l-3.32-3.32v6.23a1.782 1.782 0 0 1 .536 1.258 1.782 1.782 0 1 1-3.564 0 1.782 1.782 0 0 1 .536-1.258V8.98a1.782 1.782 0 0 1-1.072-1.072L6.62 4.388.452 10.556a1.5 1.5 0 0 0 0 2.126l10.478 10.478a1.5 1.5 0 0 0 2.126 0l10.49-10.49a1.5 1.5 0 0 0 0-2.126z"/>
+            </svg>
+          </div>
+
+          <!-- Item: CALL OF DUTY: MW (Ghost) -->
+          <div class="sk-marquee-item sk-item-char" title="Call of Duty - Ghost">
+            <img src="assets/cod-ghost-icon.png" alt="Call of Duty - Ghost" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: MYSQL -->
+          <div class="sk-marquee-item sk-item-lg" title="MySQL Database">
+            <svg class="sk-svg-brand" viewBox="-7.928823 -7.928823 403.989606 280.151746" fill="currentColor">
+              <path d="m 158.27673,174.58216 c -6.09836,33.17749 -14.14234,57.28763 -24.12688,72.32809 -7.7795,11.58931 -16.30187,17.38385 -25.58211,17.38385 -2.4739,0 -5.52458,-0.74716 -9.14466,-2.23175 l 0,-7.9978 c 1.76846,0.25963 3.84367,0.39813 6.23026,0.39813 4.32944,0 7.81854,-1.19972 10.47308,-3.59429 3.17888,-2.91777 4.7697,-6.1973 4.7697,-9.83165 0,-2.48235 -1.24087,-7.57605 -3.71131,-15.28134 l -16.43538,-51.17324 14.71197,0 11.79595,38.27281 c 2.64991,8.68961 3.7552,14.75582 3.31309,18.21346 6.45154,-17.278 10.95861,-36.1073 13.52283,-56.48627 l 14.183,0 m -64.96079,66.19054 -14.97552,0 C 77.8133,215.42811 76.35344,191.5959 73.96732,169.27145 l -0.1319,0 -22.80123,71.50125 -11.40235,0 -22.6631,-71.50125 -0.13351,0 c -1.68161,21.43972 -2.73954,45.27193 -3.18073,71.50125 l -13.6545,0 c 0.88238,-31.89902 3.09064,-61.80161 6.62479,-89.71471 l 18.56141,0 21.60563,65.91956 0.13258,0 21.73821,-65.91956 17.76011,0 c 3.88895,32.69112 6.18545,62.60297 6.89089,89.71471" />
+              <path d="m 357.6209,240.7727 -42.54601,0 0,-89.71471 14.31675,0 0,78.67871 28.22926,0 0,11.03577 M 250.64954,222.82559 c -3.62423,-5.84804 -5.43981,-15.23246 -5.43981,-28.17249 0,-22.59058 6.85116,-33.89316 20.54654,-33.89316 7.16068,0 12.4157,2.7033 15.7766,8.10434 3.61961,5.85082 5.43519,15.15395 5.43519,27.9131 0,22.77146 -6.85116,34.16182 -20.54654,34.16182 -7.15837,0 -12.4157,-2.70052 -15.77198,-8.11268 m 53.28472,20.11008 -16.44647,-8.13167 c 1.46449,-1.20412 2.85503,-2.5032 4.11392,-4.00701 6.98282,-8.23103 10.4777,-20.41371 10.4777,-36.54272 0,-29.68025 -11.6211,-44.52848 -34.86098,-44.52848 -11.39934,0 -20.28321,3.76359 -26.64466,11.30165 -6.98513,8.24099 -10.47308,20.37782 -10.47308,36.41534 0,15.76979 3.09064,27.33872 9.27655,34.68756 5.63615,6.64245 14.15967,9.9683 25.57056,9.9683 4.25715,0 8.16318,-0.52551 11.7135,-1.57677 l 21.41737,12.49674 5.83942,-10.08387 m -80.04026,-27.03045 c 0,7.60847 -2.78805,13.85464 -8.34566,18.74175 -5.56224,4.86557 -13.03476,7.30484 -22.39215,7.30484 -8.7522,0 -17.23415,-2.80752 -25.45045,-8.37671 l 3.84367,-7.70644 c 7.07059,3.54379 13.46901,5.31349 19.21372,5.31349 5.389,0 9.60687,-1.20249 12.65824,-3.5783 3.04445,-2.39295 4.86927,-5.73039 4.86927,-9.96344 0,-5.32693 -3.70508,-9.88029 -10.50311,-13.70016 -6.27599,-3.45324 -18.81873,-10.66289 -18.81873,-10.66289 -6.79572,-4.97049 -10.20282,-10.30367 -10.20282,-19.09101 0,-7.26755 2.54089,-13.14176 7.61573,-17.61106 5.0864,-4.47832 11.64882,-6.71748 19.68495,-6.71748 8.30639,0 15.85976,2.22272 22.6624,6.65217 l -3.4556,7.69926 c -5.82094,-2.47447 -11.56104,-3.71657 -17.22029,-3.71657 -4.59208,0 -8.13084,1.10545 -10.59781,3.32933 -2.48083,2.20465 -4.0146,5.04182 -4.0146,8.49969 0,5.31326 3.78592,9.92198 10.77567,13.81573 6.35453,3.45509 19.20449,10.80417 19.20449,10.80417 6.98975,4.96145 10.47308,10.25109 10.47308,18.96363" />
+              <path d="m 238.64559,0.00159781 c -3.78299,-0.0564 -7.08132,1.37231999 -8.78516,5.55858999 -2.91971,7.0500802 4.32474,13.9842002 6.8125,17.5625002 1.83635,2.48976 4.21658,5.31295 5.50781,8.12696 0.75767,1.84358 0.97638,3.79829 1.73633,5.74609 1.72781,4.7681 3.25055,9.92348 5.67969,14.33399 1.25026,2.23594 2.47895,4.58044 4.02539,6.58398 1.05021,1.29641 2.9234,2.02986 3.19726,3.87696 -1.82136,2.24792 -1.91617,5.56847 -2.92773,8.32422 -4.38541,12.38531 -2.71186,27.91266 3.75195,37.07031 2.05267,2.83688 6.78768,8.87895 13.17578,6.50391 5.66005,-2.11586 4.31688,-8.33045 6.00195,-13.88867 0.38008,-1.28828 0.17709,-2.23724 0.90821,-3.11133 3.44719,-4.00424 7.61869,-7.03964 12.06445,-9.74219 4.35418,-2.68417 9.07174,-4.79374 13.81641,-6.68555 4.54226,-1.77666 9.29744,-3.29828 14.10351,-4.36718 1.48831,-0.27419 3.01166,-0.50559 4.53125,-0.58985 0.59685,-0.0331 1.27204,0.0886 1.83203,-0.17773 1.08502,-0.51608 1.47053,-1.93049 2.04102,-3.01367 3.32789,-6.07994 4.08182,-13.4357 5.09375,-20.19727 1.02677,-6.62002 0.89246,-13.78457 -1.06641,-20.14648 -1.8906,-6.09673 -5.73357,-11.45524 -10.42382,-15.54297 -10.74104,-9.47953 -25.2652,-14.28318 -39.29297,-16.94532 -13.06484,-2.48398 -26.97449,-2.42831 -39.78907,1.83399 -0.65582,0.20791 -1.41163,0.061 -2.10351,0.11718 z" />
+            </svg>
+          </div>
+
+          <!-- Item: SNOOKER -->
+          <div class="sk-marquee-item sk-item-md" title="Snooker / 8-Ball">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" fill="currentColor"/>
+              <text x="12" y="15.2" font-family="'Outfit', sans-serif" font-size="9" font-weight="900" text-anchor="middle" fill="#050508">8</text>
+            </svg>
+          </div>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+
+          <!-- Item: HTML5 -->
+          <div class="sk-marquee-item sk-item-md" title="HTML5">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.5 2h19l-1.8 17.5L12 22l-7.7-2.5L2.5 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 6.5h12l-.4 3.5H9.5l.2 2.5h5.8l-.5 4.5-3 1-3-1-.2-2h-2l.3 3.5 4.9 1.5 4.9-1.5.8-8.5H6V6.5z"/>
+            </svg>
+          </div>
+          
+          <!-- Item: CS:GO (Counter-Strike: Global Offensive) -->
+          <div class="sk-marquee-item sk-item-lg" title="Counter-Strike: Global Offensive">
+            <svg class="sk-svg-brand" viewBox="0 0 260 64" fill="currentColor">
+              <!-- Letters CS -->
+              <path d="M 50,22 H 26 C 14,22 8,28 8,38 V 46 C 8,56 14,62 26,62 H 50 V 51 H 26 C 20,51 18,49 18,44 V 40 C 18,35 20,33 26,33 H 50 Z"/>
+              <path d="M 94,22 H 68 C 56,22 52,27 52,34 V 36 C 52,42 56,44 66,45 L 82,47 C 88,48 90,49 90,52 C 90,55 87,56 82,56 H 52 V 62 H 82 C 94,62 100,57 100,50 V 48 C 100,42 96,40 86,39 L 70,37 C 64,36 62,35 62,32 C 62,29 65,28 70,28 H 94 Z"/>
+              
+              <!-- Central Counter-Terrorist Soldier Figure -->
+              <g transform="translate(100, 4) scale(2.45)">
+                <path d="M21.7101 3.2348a.0218.0218 0 0 1-.0216-.0215c.001-.0815.003-.3698.004-.424 0-.1292-.1428-.1831-.2117-.0829-.0113.016-.1457.212-.2287.3323a.0244.0244 0 0 1-.0198.0103h-6.5508a.0473.0473 0 0 1-.0473-.0463l-.0131-.177a.0477.0477 0 0 1 .056-.0477l.335.0319a.059.059 0 0 0 .0624-.0445l.2441-.989a.0475.0475 0 0 0-.0295-.0542l-.2268-.0848a.0427.0427 0 0 1-.0263-.0295c-.0412-.1722-.3766-1.3235-1.9935-1.581-.7867-.125-1.302.2107-1.577.4784a1.594 1.594 0 0 0-.3018.4095l-.0965.2125c-.008.0164-.046.2157-.046.234l.0513.9815a.109.109 0 0 0 .0422.0856l.3546.153-.1958.3244a.055.055 0 0 1-.053.0402s-.417.0108-.6227.0192c-.3856.0155-1.2444.4858-1.8773 1.8385-.6219 1.3282-.724 1.5496-.724 1.5496a.0736.0736 0 0 1-.0684.0398l-.5776.0019c-.0356 0-.0736.0285-.0886.0608l-.8982 2.5428c-.0149.0323-.006.081.0173.1081l.627.3918a.059.059 0 0 1 .0195.059l-.3274.9664a.1916.1916 0 0 1-.0235.0618l-.4343.3824a.1056.1056 0 0 0-.0356.059l-.5978 1.5308a.0632.0632 0 0 1-.0608.0455l-.3355.0018a.1633.1633 0 0 0-.162.1488l-.2007 2.2883a1.7194 1.7194 0 0 1-.0159.1207l-.1583.908a.128.128 0 0 1-.0333.0553l-.5584.4263c-.2559.2443-.5988.6903-.7665 1.0015l-1.86 3.9235c-.045.0833-.0811.227-.0788.3221l.1321.2354c.002.0842-.0319.4559-.0707.5307L.817 23.6545a.0985.0985 0 0 0-.003.0856l.0309.0706.0932.1859 1.8913.0029c.1173.0106.247-.1396.2507-.3005l.1027-1.2965-.0268-.1952 3.6063-4.232c.0942-.1146.222-.3168.2861-.4506l1.7186-3.7892a.1712.1712 0 0 1 .1004-.088l.1086-.035a.1694.1694 0 0 1 .1827.0528c.1505.1807.5042.781.6765 1.0315.1425.2079.8495 1.2304 1.1582 1.5675.0853.0926.3481.198.4658.2696a.083.083 0 0 1 .029.1119l-1.0298 1.8083-.4549 2.1357a.9542.9542 0 0 0-.0356.1526l-.4118 1.4831c.003.1873-.141.2856-.1527.5064l-.15 1.084a.0581.0581 0 0 0 .0582.0614l2.5445.014c.0951-.0003.1902-.0045.2854-.0067a1.1049 1.1049 0 0 0 .0755-.0069c.1242-.0158.5629-.0754.75-.1503.1097-.0388.1809-.0819.2268-.1295.1855-.1935.2002-.278.2034-.3975.001-.0212-.011-.0726-.0283-.1049-.0053-.0117-.0316-.0382-.059-.0477l-1.1815-.3562a.3693.3693 0 0 1-.1889-.1338l-.3172-.469a.0865.0865 0 0 1 .0173-.0973l.618-.609a.2017.2017 0 0 0 .0483-.072l1.9036-4.488c.089-.285.0595-.6056 0-.9445-.044-.2504-.6854-1.3264-.8532-1.6236-.1476-.262-1.0677-1.8707-1.286-2.2517-.0793-.1376-.1894-.1328-.2287-.276l-.0726-1.1173a.0398.0398 0 0 1 .0356-.0505l.3312-.0276a.093.093 0 0 0 .0741-.0487l1.147-2.1544a.0958.0958 0 0 0-.002-.094l-.2349-.2907a.0874.0874 0 0 1-.001-.0875l.3515-.3796a.054.054 0 0 1 .0736-.0206l.9343.5266a.3819.3819 0 0 0 .186.0505c.259-.0019.6858-.1549.908-.2906a.3833.3833 0 0 0 .1386-.148l.4583-1.0703c.006-.0136.0262-.0117.029.0028l.1278.5953a.0635.0635 0 0 0 .0788.0501l1.3494-.3a.0662.0662 0 0 0 .05-.0786l-.318-1.3437a.0716.0716 0 0 1 .009-.0534l.1313-.2036a.281.281 0 0 0 .036-.0814l.1589-.725a.0408.0408 0 0 1 .0397-.0323l3.7327.0047a.0916.0916 0 0 0 .0932-.0931v-.6336a.022.022 0 0 1 .0216-.0216h1.4393a.0465.0465 0 0 0 .0464-.0463v-.2855a.0465.0465 0 0 0-.0464-.0463h-1.4398z"/>
+              </g>
+
+              <!-- Letters GO -->
+              <path d="M 194,22 H 168 C 156,22 150,28 150,38 V 46 C 150,56 156,62 168,62 H 194 V 45 H 180 V 52 H 168 C 162,52 160,50 160,45 V 39 C 160,34 162,33 168,33 H 194 Z"/>
+              <path d="M 218,22 C 206,22 200,28 200,38 V 46 C 200,56 206,62 218,62 H 230 C 242,62 248,56 248,46 V 38 C 248,28 242,22 230,22 Z M 230,33 C 236,33 238,35 238,40 V 44 C 238,49 236,51 230,51 H 218 C 212,51 210,49 210,44 V 40 C 210,35 212,33 218,33 Z"/>
+              
+              <!-- Registered Symbol -->
+              <circle cx="253" cy="25" r="3.2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+              <text x="253" y="27.5" font-family="'Inter', 'Arial', sans-serif" font-size="4.8" font-weight="900" text-anchor="middle" fill="currentColor">R</text>
+            </svg>
+          </div>
+
+          <!-- Item: REACT -->
+          <div class="sk-marquee-item sk-item-md" title="React.js">
+            <svg class="sk-svg-brand" viewBox="-11.5 -10.23174 23 20.46348" fill="currentColor">
+              <circle cx="0" cy="0" r="2.05" fill="currentColor"/>
+              <g stroke="currentColor" stroke-width="1.1" fill="none">
+                <ellipse rx="11" ry="4.2"/>
+                <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+                <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Item: PHP -->
+          <div class="sk-marquee-item sk-item-lg" title="PHP">
+            <svg class="sk-svg-brand" viewBox="0 28 128 72" fill="currentColor">
+              <path d="M64 30.332C28.654 30.332 0 45.407 0 64s28.654 33.668 64 33.668c35.345 0 64-15.075 64-33.668S99.346 30.332 64 30.332zm-5.982 9.81h7.293v.003l-1.745 8.968h6.496c4.087 0 6.908.714 8.458 2.139 1.553 1.427 2.017 3.737 1.398 6.93l-3.053 15.7h-7.408l2.902-14.929c.33-1.698.208-2.855-.365-3.473-.573-.617-1.793-.925-3.658-.925h-5.828L58.752 73.88h-7.291l6.557-33.738zM26.73 49.114h14.133c4.252 0 7.355 1.116 9.305 3.348 1.95 2.232 2.536 5.346 1.758 9.346-.32 1.649-.863 3.154-1.625 4.52-.763 1.364-1.76 2.613-2.99 3.745-1.468 1.373-3.098 2.353-4.891 2.936-1.794.585-4.08.875-6.858.875h-6.294l-1.745 8.97h-7.35l6.557-33.74zm57.366 0h14.13c4.252 0 7.353 1.116 9.303 3.348h.002c1.95 2.232 2.538 5.346 1.76 9.346-.32 1.649-.861 3.154-1.623 4.52-.763 1.364-1.76 2.613-2.992 3.745-1.467 1.373-3.098 2.353-4.893 2.936-1.794.585-4.077.875-6.855.875h-6.295l-1.744 8.97h-7.35l6.557-33.74zm-51.051 5.325-2.742 14.12h4.468c2.963 0 5.172-.556 6.622-1.673 1.45-1.116 2.428-2.981 2.937-5.592.485-2.507.264-4.279-.666-5.309-.93-1.032-2.79-1.547-5.584-1.547h-5.035zm57.363 0-2.744 14.12h4.47c2.965 0 5.17-.556 6.622-1.673 1.449-1.116 2.427-2.981 2.935-5.592.487-2.507.266-4.279-.664-5.309-.93-1.032-2.792-1.547-5.584-1.547h-5.035z"/>
+            </svg>
+          </div>
+
+          <!-- Item: FORTNITE (Exact Script-Kittens Vector) -->
+          <div class="sk-marquee-item sk-item-xl" title="Fortnite">
+            <svg class="sk-svg-brand" viewBox="0 0 1581 441" fill="currentColor">
+              <path d="M0 220.5C0 341.8.3 441 .7 441c.6 0 82.1-15.1 92.1-17.1l5.2-1V261h62v-14.8c0-8.1.3-29.2.7-47l.6-32.2H98V96h36.5c20.1 0 36.5-.2 36.5-.5 0-1.1 8-86.5 8.5-90.8l.6-4.7H0zM1495.8 12.9l-79.8 6.6v398.4l3.3.5c2.9.5 157.4 11.7 160.5 11.6.9 0 1.2-10.6 1.2-49.5V331h-68v-72h58v-86h-60v-57l2.3-.4c1.2-.3 11.4-.7 22.7-1.1 11.3-.3 26-.8 32.8-1.2l12.2-.6V6l-2.7.1c-1.6.1-38.7 3.1-82.5 6.8zM983.5 26.7c1 10 12.4 160.7 12.2 160.9-.1.2-14.8-35.9-32.7-80.2-17.8-44.3-32.8-81-33.2-81.7-.6-1.1-28.2 4-73.5 13.6l-4.3.9V384h89l-.5-7.2c-1-13.4-4.7-124.2-4.3-128.6.3-3.9 3.3 2.9 31.7 71.5 17.2 41.7 31.8 76.2 32.2 76.8.6.6 14.5-.3 38.1-2.3 20.5-1.8 37.3-3.4 37.3-3.5.1-.1-.4-72.2-1.1-160.2s-1.3-171.1-1.3-184.8L1073 21h-90.1zM279.5 27.1c-59.8 4-92.7 44.9-103.1 127.9-2.1 17.2-3 75.6-1.5 96 5 66.2 22.9 109.2 54.7 131.1 17.1 11.7 42.8 18 68.2 16.5 28.9-1.6 48.6-9.8 66.3-27.5 14.5-14.5 22.4-28.1 30-51.3 10.6-32.4 15.4-80.8 13-131.2-2.7-56.4-11.2-91.5-28.7-118.4-16.7-25.6-43.1-40.9-73.9-42.8-4.9-.3-10.1-.6-11.5-.8-1.4-.1-7.4.1-13.5.5zm14.1 78.6c7.3 7.9 10.4 39.4 10.4 106.8 0 83-5.2 117.5-16.6 110.1-4.9-3.3-8.6-19.4-10.4-46.1-1.3-19.5-1.3-108.8 0-127.5 1.9-26.4 5.3-41 10.4-44.5 2.8-2 3.3-1.9 6.2 1.2zM420 208.9V391H511.7l.6-12.7c.4-7.1 1.2-30.1 1.8-51.3s1.4-39.8 1.8-41.3c.5-2.1 4.8 11.4 18 57 9.6 32.9 17.7 60.2 18.1 60.6.8.9 94.6-6.5 95.6-7.5.3-.4-10.1-33.1-23.1-72.9l-23.6-72.2 5-4.4c16.6-14.5 30.3-42.5 34.2-70.2 1.7-12.1.6-42.1-2-53.2-10-43.5-36.5-77.3-70.3-89.9-14.7-5.4-13.5-5.3-83-5.7l-64.8-.4zm103.1-95.8c7.1 3.5 12.9 12.5 16 24.9 2.1 8.3 1.8 34.6-.5 43-4.3 15.8-11.9 25-23.3 28.5l-2.3.6V110l3.3.7c1.7.3 4.8 1.4 6.8 2.4zM643 74.5V121h51v268h96V137h52V44l-2.2-.4C837.7 43.1 647 27.9 644.3 28c-1 0-1.3 10-1.3 46.5zM1094 219.5V401h99V38h-99zM1306 50.6c-54.2 2.9-99.3 5.3-100.2 5.3-1.7.1-1.8 3-1.8 47.1v47h51v263h97V139h54V92c0-25.9-.3-46.9-.7-46.9-.5.1-45.1 2.5-99.3 5.5z"/>
+            </svg>
+          </div>
+          
+          <!-- Item: JAVASCRIPT -->
+          <div class="sk-marquee-item sk-item-md" title="JavaScript (ES6+)">
+            <svg class="sk-svg-brand" viewBox="0 0 54 54" fill="currentColor">
+              <rect x="2" y="2" width="50" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="3.5"/>
+              <text x="27" y="38" font-family="'Outfit', 'Inter', sans-serif" font-size="28" font-weight="900" letter-spacing="-1" text-anchor="middle" fill="currentColor">JS</text>
+            </svg>
+          </div>
+          
+          <!-- Item: VUBIX -->
+          <div class="sk-marquee-item sk-item-xl" title="Vubix Platform">
+            <svg class="sk-svg-brand" viewBox="0 0 220 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Cinzel Decorative', 'Syne', serif" font-size="46" font-weight="900" letter-spacing="6" fill="currentColor">VUBIX</text>
+            </svg>
+          </div>
+
+          <!-- Item: GOD OF WAR (Kratos) -->
+          <div class="sk-marquee-item sk-item-char" title="God of War - Kratos">
+            <img src="assets/gow-kratos-icon.png" alt="God of War - Kratos" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: NODE.JS -->
+          <div class="sk-marquee-item sk-item-xl" title="Node.js">
+            <svg class="sk-svg-brand" viewBox="0 0 240 60" fill="currentColor">
+              <polygon points="25,5 45,16.5 45,39.5 25,51 5,39.5 5,16.5" fill="none" stroke="currentColor" stroke-width="4"/>
+              <circle cx="25" cy="28" r="7" fill="currentColor"/>
+              <text x="56" y="42" font-family="'Outfit', 'Inter', sans-serif" font-size="40" font-weight="800" letter-spacing="2" fill="currentColor">NODE<tspan font-weight="900" fill="var(--crimson-accent, #ff1e42)">.JS</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: CHESS -->
+          <div class="sk-marquee-item sk-item-lg" title="Chess">
+            <svg class="sk-svg-brand" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10c10.5 1 16.5 8 16 29H15c0-9 10-6.5 8-21" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M24 18c.38 2.91-5.55 7.37-8 9-3 2-2.82 4.34-5 4-1.042-.94 1.41-3.04 0-3-1 0 .19 1.23-1 2-1 0-4.003 1-4-4 0-2 6-12 6-12s1.89-1.9 2-3.5c-.73-.994-.5-2-.5-3 1-1 3 2.5 3 2.5h2s.78-1.992 2.5-3c1 0 1 3 1 3" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="9" cy="25.5" r="0.8" fill="#0d0609" stroke="#0d0609" stroke-width="0.5"/>
+                <ellipse cx="14.5" cy="15.5" rx="0.6" ry="1.2" transform="rotate(30 14.5 15.5)" fill="#0d0609" stroke="#0d0609" stroke-width="0.5"/>
+                <path d="M15 15.5c2 1 4 5 4 8" stroke="#0d0609" stroke-width="1.5" fill="none"/>
+                <path d="M24 18c-2 2-6 5-9 6" stroke="#0d0609" stroke-width="1.5" fill="none"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Item: ANIME (Eren Yeager) -->
+          <div class="sk-marquee-item sk-item-char" title="Anime - Eren Yeager">
+            <img src="assets/eren-avatar-crimson.png" alt="Anime - Eren Yeager" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: GIT -->
+          <div class="sk-marquee-item sk-item-md" title="Git">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.126 0L8.808 2.585l3.52 3.52a1.782 1.782 0 0 1 2.257 2.257l3.385 3.385a1.782 1.782 0 0 1 1.97 2.924 1.782 1.782 0 0 1-2.923-1.97l-3.32-3.32v6.23a1.782 1.782 0 0 1 .536 1.258 1.782 1.782 0 1 1-3.564 0 1.782 1.782 0 0 1 .536-1.258V8.98a1.782 1.782 0 0 1-1.072-1.072L6.62 4.388.452 10.556a1.5 1.5 0 0 0 0 2.126l10.478 10.478a1.5 1.5 0 0 0 2.126 0l10.49-10.49a1.5 1.5 0 0 0 0-2.126z"/>
+            </svg>
+          </div>
+
+          <!-- Item: CALL OF DUTY: MW (Ghost) -->
+          <div class="sk-marquee-item sk-item-char" title="Call of Duty - Ghost">
+            <img src="assets/cod-ghost-icon.png" alt="Call of Duty - Ghost" class="sk-avatar-brand" loading="lazy" />
+          </div>
+          
+          <!-- Item: MYSQL -->
+          <div class="sk-marquee-item sk-item-lg" title="MySQL Database">
+            <svg class="sk-svg-brand" viewBox="-7.928823 -7.928823 403.989606 280.151746" fill="currentColor">
+              <path d="m 158.27673,174.58216 c -6.09836,33.17749 -14.14234,57.28763 -24.12688,72.32809 -7.7795,11.58931 -16.30187,17.38385 -25.58211,17.38385 -2.4739,0 -5.52458,-0.74716 -9.14466,-2.23175 l 0,-7.9978 c 1.76846,0.25963 3.84367,0.39813 6.23026,0.39813 4.32944,0 7.81854,-1.19972 10.47308,-3.59429 3.17888,-2.91777 4.7697,-6.1973 4.7697,-9.83165 0,-2.48235 -1.24087,-7.57605 -3.71131,-15.28134 l -16.43538,-51.17324 14.71197,0 11.79595,38.27281 c 2.64991,8.68961 3.7552,14.75582 3.31309,18.21346 6.45154,-17.278 10.95861,-36.1073 13.52283,-56.48627 l 14.183,0 m -64.96079,66.19054 -14.97552,0 C 77.8133,215.42811 76.35344,191.5959 73.96732,169.27145 l -0.1319,0 -22.80123,71.50125 -11.40235,0 -22.6631,-71.50125 -0.13351,0 c -1.68161,21.43972 -2.73954,45.27193 -3.18073,71.50125 l -13.6545,0 c 0.88238,-31.89902 3.09064,-61.80161 6.62479,-89.71471 l 18.56141,0 21.60563,65.91956 0.13258,0 21.73821,-65.91956 17.76011,0 c 3.88895,32.69112 6.18545,62.60297 6.89089,89.71471" />
+              <path d="m 357.6209,240.7727 -42.54601,0 0,-89.71471 14.31675,0 0,78.67871 28.22926,0 0,11.03577 M 250.64954,222.82559 c -3.62423,-5.84804 -5.43981,-15.23246 -5.43981,-28.17249 0,-22.59058 6.85116,-33.89316 20.54654,-33.89316 7.16068,0 12.4157,2.7033 15.7766,8.10434 3.61961,5.85082 5.43519,15.15395 5.43519,27.9131 0,22.77146 -6.85116,34.16182 -20.54654,34.16182 -7.15837,0 -12.4157,-2.70052 -15.77198,-8.11268 m 53.28472,20.11008 -16.44647,-8.13167 c 1.46449,-1.20412 2.85503,-2.5032 4.11392,-4.00701 6.98282,-8.23103 10.4777,-20.41371 10.4777,-36.54272 0,-29.68025 -11.6211,-44.52848 -34.86098,-44.52848 -11.39934,0 -20.28321,3.76359 -26.64466,11.30165 -6.98513,8.24099 -10.47308,20.37782 -10.47308,36.41534 0,15.76979 3.09064,27.33872 9.27655,34.68756 5.63615,6.64245 14.15967,9.9683 25.57056,9.9683 4.25715,0 8.16318,-0.52551 11.7135,-1.57677 l 21.41737,12.49674 5.83942,-10.08387 m -80.04026,-27.03045 c 0,7.60847 -2.78805,13.85464 -8.34566,18.74175 -5.56224,4.86557 -13.03476,7.30484 -22.39215,7.30484 -8.7522,0 -17.23415,-2.80752 -25.45045,-8.37671 l 3.84367,-7.70644 c 7.07059,3.54379 13.46901,5.31349 19.21372,5.31349 5.389,0 9.60687,-1.20249 12.65824,-3.5783 3.04445,-2.39295 4.86927,-5.73039 4.86927,-9.96344 0,-5.32693 -3.70508,-9.88029 -10.50311,-13.70016 -6.27599,-3.45324 -18.81873,-10.66289 -18.81873,-10.66289 -6.79572,-4.97049 -10.20282,-10.30367 -10.20282,-19.09101 0,-7.26755 2.54089,-13.14176 7.61573,-17.61106 5.0864,-4.47832 11.64882,-6.71748 19.68495,-6.71748 8.30639,0 15.85976,2.22272 22.6624,6.65217 l -3.4556,7.69926 c -5.82094,-2.47447 -11.56104,-3.71657 -17.22029,-3.71657 -4.59208,0 -8.13084,1.10545 -10.59781,3.32933 -2.48083,2.20465 -4.0146,5.04182 -4.0146,8.49969 0,5.31326 3.78592,9.92198 10.77567,13.81573 6.35453,3.45509 19.20449,10.80417 19.20449,10.80417 6.98975,4.96145 10.47308,10.25109 10.47308,18.96363" />
+              <path d="m 238.64559,0.00159781 c -3.78299,-0.0564 -7.08132,1.37231999 -8.78516,5.55858999 -2.91971,7.0500802 4.32474,13.9842002 6.8125,17.5625002 1.83635,2.48976 4.21658,5.31295 5.50781,8.12696 0.75767,1.84358 0.97638,3.79829 1.73633,5.74609 1.72781,4.7681 3.25055,9.92348 5.67969,14.33399 1.25026,2.23594 2.47895,4.58044 4.02539,6.58398 1.05021,1.29641 2.9234,2.02986 3.19726,3.87696 -1.82136,2.24792 -1.91617,5.56847 -2.92773,8.32422 -4.38541,12.38531 -2.71186,27.91266 3.75195,37.07031 2.05267,2.83688 6.78768,8.87895 13.17578,6.50391 5.66005,-2.11586 4.31688,-8.33045 6.00195,-13.88867 0.38008,-1.28828 0.17709,-2.23724 0.90821,-3.11133 3.44719,-4.00424 7.61869,-7.03964 12.06445,-9.74219 4.35418,-2.68417 9.07174,-4.79374 13.81641,-6.68555 4.54226,-1.77666 9.29744,-3.29828 14.10351,-4.36718 1.48831,-0.27419 3.01166,-0.50559 4.53125,-0.58985 0.59685,-0.0331 1.27204,0.0886 1.83203,-0.17773 1.08502,-0.51608 1.47053,-1.93049 2.04102,-3.01367 3.32789,-6.07994 4.08182,-13.4357 5.09375,-20.19727 1.02677,-6.62002 0.89246,-13.78457 -1.06641,-20.14648 -1.8906,-6.09673 -5.73357,-11.45524 -10.42382,-15.54297 -10.74104,-9.47953 -25.2652,-14.28318 -39.29297,-16.94532 -13.06484,-2.48398 -26.97449,-2.42831 -39.78907,1.83399 -0.65582,0.20791 -1.41163,0.061 -2.10351,0.11718 z" />
+            </svg>
+          </div>
+
+          <!-- Item: SNOOKER -->
+          <div class="sk-marquee-item sk-item-md" title="Snooker / 8-Ball">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" fill="currentColor"/>
+              <text x="12" y="15.2" font-family="'Outfit', sans-serif" font-size="9" font-weight="900" text-anchor="middle" fill="#050508">8</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Marquee Row: Moves RIGHT (Platforms, Games & Passions) -->
+      <div class="marquee-row-wrap marquee-right">
+        <div class="marquee-track">
+
+          <!-- Item: DISCORD -->
+          <div class="sk-marquee-item sk-item-lg" title="Discord">
+            <svg class="sk-svg-brand" viewBox="0 0 127.14 96.36" fill="currentColor">
+              <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.91,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.91,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+          </div>
+
+          <!-- Item: CSS3 -->
+          <div class="sk-marquee-item sk-item-md" title="CSS3">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.5 2h19l-1.8 17.5L12 22l-7.7-2.5L2.5 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 6.5h12l-.4 3.5h-7.8l.2 2.5h7.2l-.6 6-4.6 1.5-4.6-1.5-.3-3H9.5l.2 1.6 2.3.7 2.3-.7.3-2.6H6V6.5z"/>
+            </svg>
+          </div>
+
+          <!-- Item: JQUERY -->
+          <div class="sk-marquee-item sk-item-lg" title="jQuery">
+            <svg class="sk-svg-brand" viewBox="0 0 128 128" fill="currentColor">
+              <path d="M47.961 79.02l.193.094.344.166c.439.209.882.416 1.329.615l.281.125c.513.225 1.029.439 1.551.645l.378.148c.482.188.972.37 1.463.543l.184.063c.539.188 1.083.363 1.632.534l.395.117c.558.169 1.109.37 1.685.477 36.554 6.665 47.171-21.967 47.171-21.967-8.918 11.618-24.747 14.683-39.745 11.271-.568-.128-1.12-.306-1.674-.47l-.417-.126a51.381 51.381 0 01-1.612-.524l-.221-.08a51.147 51.147 0 01-1.421-.527l-.398-.156a43.031 43.031 0 01-1.534-.638l-.307-.136a61.098 61.098 0 01-1.294-.602l-.375-.18c-.336-.164-.669-.339-1.001-.51l-.668-.35a37.935 37.935 0 01-1.199-.673l-.405-.226a58.779 58.779 0 01-1.563-.958l-.421-.28a41.205 41.205 0 01-1.112-.739l-.358-.252c-.354-.25-.704-.503-1.051-.76l-.466-.353a47.401 47.401 0 01-.948-.74l-.423-.34a62.157 62.157 0 01-1.182-.995l-.129-.109A49.53 49.53 0 0143.399 60l-.35-.337c-.303-.287-.6-.577-.893-.874l-.35-.35a49.681 49.681 0 01-1.095-1.158l-.054-.058a44.217 44.217 0 01-1.111-1.264l-.291-.346c-.27-.325-.538-.655-.799-.988l-.293-.364a53.218 53.218 0 01-.923-1.229c-8.326-11.358-11.318-27.023-4.663-39.888l-5.899 7.482c-7.559 10.863-6.617 24.997-.844 36.541l.423.821.271.52.168.299.301.539c.179.316.362.63.55.944l.315.519c.208.336.421.668.64 1l.272.422c.301.448.609.896.926 1.336l.027.035.156.211c.275.379.558.753.844 1.123l.318.404c.255.321.516.641.78.959l.298.355c.355.419.717.835 1.087 1.242l.022.023.042.046c.36.394.73.778 1.104 1.164l.354.357c.29.292.584.579.882.865l.361.343c.397.374.798.741 1.208 1.101l.02.015.21.18c.361.312.729.623 1.099.928l.455.362c.302.242.608.481.916.716l.489.372c.34.25.682.496 1.027.737l.375.266.103.073c.328.226.663.442.998.659l.432.288c.513.325 1.035.646 1.562.956l.432.244c.388.223.777.442 1.172.656l.648.336.84.437zm3.693-36.795c.819 1.174 1.726 2.57 2.813 3.514.394.434.806.856 1.226 1.273l.324.318c.409.396.824.785 1.252 1.164l.052.044.012.013c.475.416.965.816 1.463 1.21l.333.26c.5.383 1.009.759 1.531 1.118l.045.033.698.46.332.22c.373.238.75.472 1.135.694l.16.093c.331.191.667.379 1.003.561l.356.187.702.363.106.048c.482.237.968.465 1.464.682l.323.133c.396.168.797.333 1.199.487l.514.188c.366.136.732.26 1.102.383l.499.16c.526.163 1.045.369 1.593.46 28.222 4.677 34.738-17.054 34.738-17.054-5.874 8.459-17.248 12.494-29.386 9.344a33.73 33.73 0 01-1.598-.462l-.481-.155c-.375-.121-.748-.25-1.118-.385l-.504-.188a39.777 39.777 0 01-1.204-.485l-.324-.138a32.331 32.331 0 01-1.472-.685l-.739-.376-.426-.219c-.314-.17-.626-.348-.934-.527l-.223-.127a35.907 35.907 0 01-1.132-.689l-.341-.229-.732-.484a37.97 37.97 0 01-1.525-1.115l-.343-.271c-5.313-4.193-9.524-9.927-11.527-16.428-2.098-6.74-1.646-14.308 1.989-20.449l-4.466 6.306c-5.466 7.865-5.169 18.396-.905 26.715a34.709 34.709 0 002.416 4.035zm29.747-9.731l.701.243.309.098c.333.104.662.226 1.005.29 15.583 3.011 19.811-7.997 20.936-9.617-3.703 5.331-9.925 6.61-17.56 4.757a19.346 19.346 0 01-1.848-.57 22.91 22.91 0 01-2.193-.91 22.678 22.678 0 01-3.846-2.347c-6.832-5.185-11.076-15.072-6.618-23.126l-2.412 3.324c-3.222 4.743-3.539 10.633-1.303 15.869 2.358 5.56 7.19 9.92 12.829 11.989zM66.359 96.295h-4.226a.556.556 0 00-.517.417l-1.5 6.94-1.5 6.94a.554.554 0 01-.516.417h-2.991c-2.959 0-2.617-2.047-2.011-4.851l.018-.085.066-.354.012-.066.135-.72.145-.771.154-.785.682-3.332.683-3.332a.336.336 0 00-.341-.419h-4.337a.55.55 0 00-.514.418l-.933 4.424-.932 4.425-.002.006-.086.412c-1.074 4.903-.79 9.58 5.048 9.727l.17.003h9.163a.554.554 0 00.516-.417l1.976-9.289 1.976-9.29c.049-.23-.103-.417-.338-.418zm-45.256-.049h-4.64a.562.562 0 00-.521.416l-.44 1.942-.44 1.942c-.051.229.098.416.333.416h4.676a.556.556 0 00.518-.417l.425-1.941.425-1.941c.049-.229-.101-.417-.336-.417zm-1.346 6.044H15.08a.563.563 0 00-.521.416l-.657 2.91-.656 2.909-.183.834-.631 2.97-.63 2.971c-.049.229-.15.599-.225.821 0 0-.874 2.6-2.343 2.57l-.184-.004-1.271-.023h-.001a.558.558 0 00-.524.407l-.485 2.039-.484 2.038c-.055.228.093.416.326.42.833.01 2.699.031 3.828.031 3.669 0 5.604-2.033 6.843-7.883l1.451-6.714 1.361-6.297c.049-.227-.103-.415-.337-.415zm86.117-1.574l-.194-.801-.191-.82-.097-.414c-.38-1.477-1.495-2.328-3.917-2.328l-3.77-.004-3.472-.005h-3.907a.552.552 0 00-.515.417l-.173.816-.204.964-.057.271-1.759 8.24-1.67 7.822c-.05.23-.066.512-.038.626.028.115.479.209.713.209h3.524c.235 0 .532-.042.66-.094s.317-.513.364-.742l.626-3.099.627-3.1.001-.005.084-.413.76-3.56.671-3.144a.555.555 0 01.515-.417l11.089-.005c.235.002.383-.185.33-.414zm14.275-7.24l-.854.003h-3.549a.904.904 0 00-.667.353l-7.849 11.498c-.132.194-.283.166-.335-.062l-.578-2.533a.562.562 0 00-.522-.416h-5.045c-.235 0-.374.184-.31.409l2.261 7.921c.064.226.069.596.011.824l-.985 3.833c-.059.228.085.413.32.413h4.987a.58.58 0 00.532-.413l.986-3.833a2.52 2.52 0 01.363-.755l12.742-16.911c.142-.188.065-.341-.169-.339l-1.339.008zm-40.086 9.919v-.004a.514.514 0 01-.499.441h-6.397c-.222 0-.334-.15-.301-.336l.006-.015-.004.002.003-.021.029-.109c.611-1.624 1.855-2.69 4.194-2.69 2.634-.001 3.148 1.285 2.969 2.732zm-1.877-7.384c-8.211 0-10.157 4.984-11.249 10.015-1.091 5.128-.998 9.921 7.5 9.921h1.03l.256-.001h.06l1.02-.003h.018c2.244-.009 4.495-.026 5.406-.033a.553.553 0 00.509-.42l.344-1.681.067-.327.41-2.006a.335.335 0 00-.341-.418h-7.639c-3.039 0-3.941-.807-3.608-3.181H84.18l-.001.001.008-.001a.503.503 0 00.445-.315l.029-.106-.001.001c1.813-6.839 1.293-11.445-6.474-11.446zm-38.81 7.358l-.116.409v.001l-.922 3.268-.922 3.267a.596.596 0 01-.543.411h-4.88c-3.702 0-4.604-2.896-3.702-7.166.901-4.368 2.668-7.083 6.312-7.358 4.98-.376 5.976 3.126 4.773 7.168zm3.348 7.105s2.301-5.588 2.823-8.814c.713-4.319-1.45-10.585-9.804-10.585-8.306 0-11.914 5.981-13.29 12.484-1.376 6.55.427 12.293 8.686 12.246l6.516-.024 6.089-.022a.59.59 0 00.534-.414l1.061-4.046c.059-.228-.084-.414-.319-.416l-1.017-.006-1.017-.006c-.199-.001-.313-.131-.289-.302l.027-.095zm41.12-3.741a.28.28 0 11-.56.001.28.28 0 01.56-.001z"/>
+            </svg>
+          </div>
+
+          <!-- Item: PUBG -->
+          <div class="sk-marquee-item sk-item-xl" title="PUBG">
+            <svg class="sk-svg-brand" viewBox="0 0 190 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Outfit', 'Impact', sans-serif" font-size="48" font-weight="900" font-style="italic" letter-spacing="4" fill="currentColor">PUBG</text>
+            </svg>
+          </div>
+
+          <!-- Item: GITHUB -->
+          <div class="sk-marquee-item sk-item-lg" title="GitHub">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+
+          <!-- Item: PS5 (PlayStation 5) -->
+          <div class="sk-marquee-item sk-item-xl" title="PS5 / PlayStation 5">
+            <svg class="sk-svg-brand" viewBox="0 0 200 54" fill="currentColor">
+              <g transform="translate(0, 4) scale(0.7)">
+                <path d="M28.4 2.8C25.5 1.7 22.3 2 19.8 3.6 15 6.7 12 12.3 12 18.2v18.7l11.4 3.7V17.9c0-2.8 1.4-4.8 3.5-4.8 1.8 0 2.9 1.3 2.9 3.8v22.4l11.4 3.7V14.6c0-6.7-4.1-10.4-12.8-11.8z"/>
+                <path d="M49.6 44.2c-5.8-2.2-12.6-3.3-18.4-3.3-6.4 0-14 1.3-19.4 3.9L0 49.9c6.6-2.5 14.6-3.8 21.6-3.8 5.7 0 12.3 1.1 17.8 3.1 7.2 2.6 14.3 7 14.3 7l10-4.8s-7.5-4.3-14.1-7.2z"/>
+              </g>
+              <text x="54" y="40" font-family="'Outfit', 'Inter', sans-serif" font-size="44" font-weight="900" letter-spacing="2" fill="currentColor">PS<tspan fill="var(--crimson-accent, #ff1e42)">5</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: EXPRESS.JS -->
+          <div class="sk-marquee-item sk-item-lg" title="Express.js">
+            <svg class="sk-svg-brand" viewBox="0 0 310 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Outfit', 'Inter', sans-serif" font-size="46" font-weight="900" letter-spacing="5" fill="currentColor">EXPRESS<tspan font-size="26" font-weight="800">.JS</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: DEVIL MAY CRY (Dante) -->
+          <div class="sk-marquee-item sk-item-char" title="Devil May Cry - Dante">
+            <img src="assets/dante-dmc-icon.png" alt="Devil May Cry - Dante" class="sk-avatar-brand" loading="lazy" />
+          </div>
+
+          <!-- Item: MONGODB -->
+          <div class="sk-marquee-item sk-item-md" title="MongoDB">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.996 0c-.068 0-.135.004-.203.01C10.74.195 4.747 4.198 4.747 12.336c0 5.485 3.659 9.873 6.953 11.517.1.05.2.096.3.147.07.035.14.07.21.096.06.02.12.04.18.05.04.01.07.01.11.01.03 0 .07 0 .1-.01.06-.01.12-.03.18-.05.07-.03.14-.06.21-.1.1-.05.2-.1.3-.146 3.294-1.644 6.953-6.032 6.953-11.517 0-8.138-5.993-12.14-7.046-12.326-.068-.006-.135-.01-.203-.01zm.297 1.838c.617.26 4.962 3.197 4.962 10.498 0 4.155-2.28 7.747-4.962 9.477V1.838zM11.414 2.11v19.46c-2.485-1.782-4.57-5.267-4.57-9.234 0-7.058 4.08-9.98 4.57-10.226z"/>
+            </svg>
+          </div>
+
+          <!-- Item: FOOTBALL -->
+          <div class="sk-marquee-item sk-item-md" title="Football">
+            <svg class="sk-svg-brand" viewBox="0 0 80 80" fill="currentColor">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-width="3"/>
+              <polygon points="40,24 54,32 54,48 40,56 26,48 26,32" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <polygon points="40,29 48,34 48,46 40,51 32,46 32,34" fill="var(--crimson-accent, #ff1e42)"/>
+              <line x1="40" y1="24" x2="40" y2="8" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="54" y1="32" x2="68" y2="24" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="54" y1="48" x2="68" y2="56" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="40" y1="56" x2="40" y2="72" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="26" y1="48" x2="12" y2="56" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="26" y1="32" x2="12" y2="24" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+
+          <!-- Item: CODING -->
+          <div class="sk-marquee-item sk-item-md" title="Coding">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" stroke="currentColor" stroke-width="0.8"/>
+            </svg>
+          </div>
+
+          <!-- Item: MUSIC -->
+          <div class="sk-marquee-item sk-item-md" title="Music">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3a9 9 0 0 0-9 9v7a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5v-1a7 7 0 0 1 14 0v1h-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3v-7a9 9 0 0 0-9-9z"/>
+            </svg>
+          </div>
+
+          <!-- Item: MOVIES & SERIES -->
+          <div class="sk-marquee-item sk-item-md" title="Movies &amp; Series">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 4l-2.5 3h-3l2.5-3H12l-2.5 3h-3L9 7H4V5h16v2z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+
+          <!-- Item: DISCORD -->
+          <div class="sk-marquee-item sk-item-lg" title="Discord">
+            <svg class="sk-svg-brand" viewBox="0 0 127.14 96.36" fill="currentColor">
+              <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.91,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.91,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+          </div>
+
+          <!-- Item: CSS3 -->
+          <div class="sk-marquee-item sk-item-md" title="CSS3">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.5 2h19l-1.8 17.5L12 22l-7.7-2.5L2.5 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 6.5h12l-.4 3.5h-7.8l.2 2.5h7.2l-.6 6-4.6 1.5-4.6-1.5-.3-3H9.5l.2 1.6 2.3.7 2.3-.7.3-2.6H6V6.5z"/>
+            </svg>
+          </div>
+
+          <!-- Item: JQUERY -->
+          <div class="sk-marquee-item sk-item-lg" title="jQuery">
+            <svg class="sk-svg-brand" viewBox="0 0 128 128" fill="currentColor">
+              <path d="M47.961 79.02l.193.094.344.166c.439.209.882.416 1.329.615l.281.125c.513.225 1.029.439 1.551.645l.378.148c.482.188.972.37 1.463.543l.184.063c.539.188 1.083.363 1.632.534l.395.117c.558.169 1.109.37 1.685.477 36.554 6.665 47.171-21.967 47.171-21.967-8.918 11.618-24.747 14.683-39.745 11.271-.568-.128-1.12-.306-1.674-.47l-.417-.126a51.381 51.381 0 01-1.612-.524l-.221-.08a51.147 51.147 0 01-1.421-.527l-.398-.156a43.031 43.031 0 01-1.534-.638l-.307-.136a61.098 61.098 0 01-1.294-.602l-.375-.18c-.336-.164-.669-.339-1.001-.51l-.668-.35a37.935 37.935 0 01-1.199-.673l-.405-.226a58.779 58.779 0 01-1.563-.958l-.421-.28a41.205 41.205 0 01-1.112-.739l-.358-.252c-.354-.25-.704-.503-1.051-.76l-.466-.353a47.401 47.401 0 01-.948-.74l-.423-.34a62.157 62.157 0 01-1.182-.995l-.129-.109A49.53 49.53 0 0143.399 60l-.35-.337c-.303-.287-.6-.577-.893-.874l-.35-.35a49.681 49.681 0 01-1.095-1.158l-.054-.058a44.217 44.217 0 01-1.111-1.264l-.291-.346c-.27-.325-.538-.655-.799-.988l-.293-.364a53.218 53.218 0 01-.923-1.229c-8.326-11.358-11.318-27.023-4.663-39.888l-5.899 7.482c-7.559 10.863-6.617 24.997-.844 36.541l.423.821.271.52.168.299.301.539c.179.316.362.63.55.944l.315.519c.208.336.421.668.64 1l.272.422c.301.448.609.896.926 1.336l.027.035.156.211c.275.379.558.753.844 1.123l.318.404c.255.321.516.641.78.959l.298.355c.355.419.717.835 1.087 1.242l.022.023.042.046c.36.394.73.778 1.104 1.164l.354.357c.29.292.584.579.882.865l.361.343c.397.374.798.741 1.208 1.101l.02.015.21.18c.361.312.729.623 1.099.928l.455.362c.302.242.608.481.916.716l.489.372c.34.25.682.496 1.027.737l.375.266.103.073c.328.226.663.442.998.659l.432.288c.513.325 1.035.646 1.562.956l.432.244c.388.223.777.442 1.172.656l.648.336.84.437zm3.693-36.795c.819 1.174 1.726 2.57 2.813 3.514.394.434.806.856 1.226 1.273l.324.318c.409.396.824.785 1.252 1.164l.052.044.012.013c.475.416.965.816 1.463 1.21l.333.26c.5.383 1.009.759 1.531 1.118l.045.033.698.46.332.22c.373.238.75.472 1.135.694l.16.093c.331.191.667.379 1.003.561l.356.187.702.363.106.048c.482.237.968.465 1.464.682l.323.133c.396.168.797.333 1.199.487l.514.188c.366.136.732.26 1.102.383l.499.16c.526.163 1.045.369 1.593.46 28.222 4.677 34.738-17.054 34.738-17.054-5.874 8.459-17.248 12.494-29.386 9.344a33.73 33.73 0 01-1.598-.462l-.481-.155c-.375-.121-.748-.25-1.118-.385l-.504-.188a39.777 39.777 0 01-1.204-.485l-.324-.138a32.331 32.331 0 01-1.472-.685l-.739-.376-.426-.219c-.314-.17-.626-.348-.934-.527l-.223-.127a35.907 35.907 0 01-1.132-.689l-.341-.229-.732-.484a37.97 37.97 0 01-1.525-1.115l-.343-.271c-5.313-4.193-9.524-9.927-11.527-16.428-2.098-6.74-1.646-14.308 1.989-20.449l-4.466 6.306c-5.466 7.865-5.169 18.396-.905 26.715a34.709 34.709 0 002.416 4.035zm29.747-9.731l.701.243.309.098c.333.104.662.226 1.005.29 15.583 3.011 19.811-7.997 20.936-9.617-3.703 5.331-9.925 6.61-17.56 4.757a19.346 19.346 0 01-1.848-.57 22.91 22.91 0 01-2.193-.91 22.678 22.678 0 01-3.846-2.347c-6.832-5.185-11.076-15.072-6.618-23.126l-2.412 3.324c-3.222 4.743-3.539 10.633-1.303 15.869 2.358 5.56 7.19 9.92 12.829 11.989zM66.359 96.295h-4.226a.556.556 0 00-.517.417l-1.5 6.94-1.5 6.94a.554.554 0 01-.516.417h-2.991c-2.959 0-2.617-2.047-2.011-4.851l.018-.085.066-.354.012-.066.135-.72.145-.771.154-.785.682-3.332.683-3.332a.336.336 0 00-.341-.419h-4.337a.55.55 0 00-.514.418l-.933 4.424-.932 4.425-.002.006-.086.412c-1.074 4.903-.79 9.58 5.048 9.727l.17.003h9.163a.554.554 0 00.516-.417l1.976-9.289 1.976-9.29c.049-.23-.103-.417-.338-.418zm-45.256-.049h-4.64a.562.562 0 00-.521.416l-.44 1.942-.44 1.942c-.051.229.098.416.333.416h4.676a.556.556 0 00.518-.417l.425-1.941.425-1.941c.049-.229-.101-.417-.336-.417zm-1.346 6.044H15.08a.563.563 0 00-.521.416l-.657 2.91-.656 2.909-.183.834-.631 2.97-.63 2.971c-.049.229-.15.599-.225.821 0 0-.874 2.6-2.343 2.57l-.184-.004-1.271-.023h-.001a.558.558 0 00-.524.407l-.485 2.039-.484 2.038c-.055.228.093.416.326.42.833.01 2.699.031 3.828.031 3.669 0 5.604-2.033 6.843-7.883l1.451-6.714 1.361-6.297c.049-.227-.103-.415-.337-.415zm86.117-1.574l-.194-.801-.191-.82-.097-.414c-.38-1.477-1.495-2.328-3.917-2.328l-3.77-.004-3.472-.005h-3.907a.552.552 0 00-.515.417l-.173.816-.204.964-.057.271-1.759 8.24-1.67 7.822c-.05.23-.066.512-.038.626.028.115.479.209.713.209h3.524c.235 0 .532-.042.66-.094s.317-.513.364-.742l.626-3.099.627-3.1.001-.005.084-.413.76-3.56.671-3.144a.555.555 0 01.515-.417l11.089-.005c.235.002.383-.185.33-.414zm14.275-7.24l-.854.003h-3.549a.904.904 0 00-.667.353l-7.849 11.498c-.132.194-.283.166-.335-.062l-.578-2.533a.562.562 0 00-.522-.416h-5.045c-.235 0-.374.184-.31.409l2.261 7.921c.064.226.069.596.011.824l-.985 3.833c-.059.228.085.413.32.413h4.987a.58.58 0 00.532-.413l.986-3.833a2.52 2.52 0 01.363-.755l12.742-16.911c.142-.188.065-.341-.169-.339l-1.339.008zm-40.086 9.919v-.004a.514.514 0 01-.499.441h-6.397c-.222 0-.334-.15-.301-.336l.006-.015-.004.002.003-.021.029-.109c.611-1.624 1.855-2.69 4.194-2.69 2.634-.001 3.148 1.285 2.969 2.732zm-1.877-7.384c-8.211 0-10.157 4.984-11.249 10.015-1.091 5.128-.998 9.921 7.5 9.921h1.03l.256-.001h.06l1.02-.003h.018c2.244-.009 4.495-.026 5.406-.033a.553.553 0 00.509-.42l.344-1.681.067-.327.41-2.006a.335.335 0 00-.341-.418h-7.639c-3.039 0-3.941-.807-3.608-3.181H84.18l-.001.001.008-.001a.503.503 0 00.445-.315l.029-.106-.001.001c1.813-6.839 1.293-11.445-6.474-11.446zm-38.81 7.358l-.116.409v.001l-.922 3.268-.922 3.267a.596.596 0 01-.543.411h-4.88c-3.702 0-4.604-2.896-3.702-7.166.901-4.368 2.668-7.083 6.312-7.358 4.98-.376 5.976 3.126 4.773 7.168zm3.348 7.105s2.301-5.588 2.823-8.814c.713-4.319-1.45-10.585-9.804-10.585-8.306 0-11.914 5.981-13.29 12.484-1.376 6.55.427 12.293 8.686 12.246l6.516-.024 6.089-.022a.59.59 0 00.534-.414l1.061-4.046c.059-.228-.084-.414-.319-.416l-1.017-.006-1.017-.006c-.199-.001-.313-.131-.289-.302l.027-.095zm41.12-3.741a.28.28 0 11-.56.001.28.28 0 01.56-.001z"/>
+            </svg>
+          </div>
+
+          <!-- Item: PUBG -->
+          <div class="sk-marquee-item sk-item-xl" title="PUBG">
+            <svg class="sk-svg-brand" viewBox="0 0 190 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Outfit', 'Impact', sans-serif" font-size="48" font-weight="900" font-style="italic" letter-spacing="4" fill="currentColor">PUBG</text>
+            </svg>
+          </div>
+
+          <!-- Item: GITHUB -->
+          <div class="sk-marquee-item sk-item-lg" title="GitHub">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+
+          <!-- Item: PS5 (PlayStation 5) -->
+          <div class="sk-marquee-item sk-item-xl" title="PS5 / PlayStation 5">
+            <svg class="sk-svg-brand" viewBox="0 0 200 54" fill="currentColor">
+              <g transform="translate(0, 4) scale(0.7)">
+                <path d="M28.4 2.8C25.5 1.7 22.3 2 19.8 3.6 15 6.7 12 12.3 12 18.2v18.7l11.4 3.7V17.9c0-2.8 1.4-4.8 3.5-4.8 1.8 0 2.9 1.3 2.9 3.8v22.4l11.4 3.7V14.6c0-6.7-4.1-10.4-12.8-11.8z"/>
+                <path d="M49.6 44.2c-5.8-2.2-12.6-3.3-18.4-3.3-6.4 0-14 1.3-19.4 3.9L0 49.9c6.6-2.5 14.6-3.8 21.6-3.8 5.7 0 12.3 1.1 17.8 3.1 7.2 2.6 14.3 7 14.3 7l10-4.8s-7.5-4.3-14.1-7.2z"/>
+              </g>
+              <text x="54" y="40" font-family="'Outfit', 'Inter', sans-serif" font-size="44" font-weight="900" letter-spacing="2" fill="currentColor">PS<tspan fill="var(--crimson-accent, #ff1e42)">5</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: EXPRESS.JS -->
+          <div class="sk-marquee-item sk-item-lg" title="Express.js">
+            <svg class="sk-svg-brand" viewBox="0 0 310 54" fill="currentColor">
+              <text x="0" y="42" font-family="'Outfit', 'Inter', sans-serif" font-size="46" font-weight="900" letter-spacing="5" fill="currentColor">EXPRESS<tspan font-size="26" font-weight="800">.JS</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Item: DEVIL MAY CRY (Dante) -->
+          <div class="sk-marquee-item sk-item-char" title="Devil May Cry - Dante">
+            <img src="assets/dante-dmc-icon.png" alt="Devil May Cry - Dante" class="sk-avatar-brand" loading="lazy" />
+          </div>
+
+          <!-- Item: MONGODB -->
+          <div class="sk-marquee-item sk-item-md" title="MongoDB">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.996 0c-.068 0-.135.004-.203.01C10.74.195 4.747 4.198 4.747 12.336c0 5.485 3.659 9.873 6.953 11.517.1.05.2.096.3.147.07.035.14.07.21.096.06.02.12.04.18.05.04.01.07.01.11.01.03 0 .07 0 .1-.01.06-.01.12-.03.18-.05.07-.03.14-.06.21-.1.1-.05.2-.1.3-.146 3.294-1.644 6.953-6.032 6.953-11.517 0-8.138-5.993-12.14-7.046-12.326-.068-.006-.135-.01-.203-.01zm.297 1.838c.617.26 4.962 3.197 4.962 10.498 0 4.155-2.28 7.747-4.962 9.477V1.838zM11.414 2.11v19.46c-2.485-1.782-4.57-5.267-4.57-9.234 0-7.058 4.08-9.98 4.57-10.226z"/>
+            </svg>
+          </div>
+
+          <!-- Item: FOOTBALL -->
+          <div class="sk-marquee-item sk-item-md" title="Football">
+            <svg class="sk-svg-brand" viewBox="0 0 80 80" fill="currentColor">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-width="3"/>
+              <polygon points="40,24 54,32 54,48 40,56 26,48 26,32" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <polygon points="40,29 48,34 48,46 40,51 32,46 32,34" fill="var(--crimson-accent, #ff1e42)"/>
+              <line x1="40" y1="24" x2="40" y2="8" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="54" y1="32" x2="68" y2="24" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="54" y1="48" x2="68" y2="56" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="40" y1="56" x2="40" y2="72" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="26" y1="48" x2="12" y2="56" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="26" y1="32" x2="12" y2="24" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+
+          <!-- Item: CODING -->
+          <div class="sk-marquee-item sk-item-md" title="Coding">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" stroke="currentColor" stroke-width="0.8"/>
+            </svg>
+          </div>
+
+          <!-- Item: MUSIC -->
+          <div class="sk-marquee-item sk-item-md" title="Music">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3a9 9 0 0 0-9 9v7a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5v-1a7 7 0 0 1 14 0v1h-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3v-7a9 9 0 0 0-9-9z"/>
+            </svg>
+          </div>
+
+          <!-- Item: MOVIES & SERIES -->
+          <div class="sk-marquee-item sk-item-md" title="Movies &amp; Series">
+            <svg class="sk-svg-brand" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 4l-2.5 3h-3l2.5-3H12l-2.5 3h-3L9 7H4V5h16v2z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Script-Kittens Bottom Atmospheric Light Flare -->
+      <div class="marquee-bottom-ambient-light" aria-hidden="true"></div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 04. SANCTUM ARENA (3D STAGE FOUNDATION)    -->
+    <!-- ========================================== -->
+    <section class="section-block game3d-section" id="arena3d">
+      <div class="section-container">
+        
+        <!-- Gothic Section Header -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag">3D ENVIRONMENT &bull; STAGE 1 FOUNDATION</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <h2 class="demonic-main-title deathmetal-title">SANCTUM ARENA</h2>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Procedural monolithic colosseum rendered via WebGL. Explore the 3D atmospheric lighting, obsidian monoliths, and dais geometry.</p>
+        </div>
+
+        <!-- 3D Viewport Card Container -->
+        <div class="game3d-viewport-card" id="game3dViewportCard">
+          <!-- Top Floating Status & Camera Bar -->
+          <div class="game3d-top-bar">
+            <div class="game3d-status-pill">
+              <span class="game3d-status-dot"></span>
+              <span>THREE.JS 3D ENGINE &bull; 60 FPS</span>
+            </div>
+            <div class="game3d-controls-hint">
+              <span><kbd>Left Click + Drag</kbd> Orbit</span>
+              <span><kbd>Scroll</kbd> Zoom</span>
+              <span><kbd>Right Click</kbd> Pan</span>
+            </div>
+            <button type="button" class="game3d-reset-cam-btn" id="game3dResetCamBtn" title="Reset Camera">
+              <i class="fa-solid fa-arrows-rotate"></i>
+              <span>Reset Cam</span>
+            </button>
+          </div>
+
+          <!-- Three.js Canvas Mount Node -->
+          <div class="game3d-canvas-container" id="game3dCanvasContainer"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 05. ARSENAL (DEMONIC ARSENAL)              -->
+    <!-- ========================================== -->
+    <section class="section-block" id="skills">
+      <div class="section-container">
+        
+        <!-- Modular Demonic Header: Weapons & Mastery -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag">TACTICAL ARSENAL</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <h2 class="demonic-main-title deathmetal-title">WEAPONS &amp; MASTERY</h2>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Battle-tested tools and domain proficiencies across frontend, backend, databases, and defensive security.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="arsenal-filters-row">
+          <button class="filter-pill active" data-filter="all">ALL WEAPONS</button>
+          <button class="filter-pill" data-filter="frontend">FRONTEND</button>
+          <button class="filter-pill" data-filter="backend">BACKEND</button>
+          <button class="filter-pill" data-filter="database">DATABASES</button>
+          <button class="filter-pill" data-filter="security">CYBER &amp; SOC</button>
+          <button class="filter-pill" data-filter="tools">TOOLS &amp; AI</button>
+        </div>
+
+        <!-- Arsenal Grid -->
+        <div class="arsenal-cards-grid" id="arsenalGrid">
+
+          <!-- 1. HTML5 & CSS3 -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="frontend">
+            <div class="item-icon-box"><i class="fa-brands fa-html5"></i></div>
+            <span class="item-tag">FOUNDATION</span>
+            <h3 class="item-title">HTML5 &amp; Modern CSS3</h3>
+            <p class="item-desc">Semantic markup, responsive Flexbox &amp; Grid layouts, keyframe animations, and cross-browser styling.</p>
+            <div class="item-chips">
+              <span>HTML5</span><span>CSS3</span><span>Responsive UI</span>
+            </div>
+          </div>
+
+          <!-- 2. Bootstrap & Tailwind CSS -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="frontend">
+            <div class="item-icon-box"><i class="fa-brands fa-bootstrap"></i></div>
+            <span class="item-tag">UI FRAMEWORKS</span>
+            <h3 class="item-title">Bootstrap &amp; Tailwind CSS</h3>
+            <p class="item-desc">Utility-first rapid styling, component layout grids, responsive breakpoints, and custom theme systems.</p>
+            <div class="item-chips">
+              <span>Bootstrap 5</span><span>Tailwind CSS</span><span>Flex / Grid</span>
+            </div>
+          </div>
+
+          <!-- 3. JavaScript & TypeScript -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="frontend">
+            <div class="item-icon-box"><i class="fa-brands fa-js"></i></div>
+            <span class="item-tag">CORE LANGUAGE</span>
+            <h3 class="item-title">JavaScript &amp; TypeScript</h3>
+            <p class="item-desc">Strict type safety, asynchronous promises, modern ES6+ features, and event-driven frontend logic.</p>
+            <div class="item-chips">
+              <span>JavaScript</span><span>TypeScript</span><span>ESNext</span>
+            </div>
+          </div>
+
+          <!-- 4. React & Next.js -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="frontend">
+            <div class="item-icon-box"><i class="fa-brands fa-react"></i></div>
+            <span class="item-tag">FRONTEND FRAMEWORK</span>
+            <h3 class="item-title">React &amp; Next.js</h3>
+            <p class="item-desc">Component-driven architecture, App Router, server-side rendering, client hydration, and fast state management.</p>
+            <div class="item-chips">
+              <span>React 18/19</span><span>Next.js</span><span>SSR / SSG</span>
+            </div>
+          </div>
+
+          <!-- 5. Node.js & Express -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="backend">
+            <div class="item-icon-box"><i class="fa-brands fa-node-js"></i></div>
+            <span class="item-tag">SERVER RUNTIME</span>
+            <h3 class="item-title">Node.js &amp; Express</h3>
+            <p class="item-desc">Non-blocking asynchronous backends, middleware pipelines, fast REST API routing, and server endpoints.</p>
+            <div class="item-chips">
+              <span>Node.js</span><span>Express</span><span>REST APIs</span>
+            </div>
+          </div>
+
+          <!-- 6. jQuery & DOM Scripting -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="frontend">
+            <div class="item-icon-box"><i class="fa-solid fa-code"></i></div>
+            <span class="item-tag">DOM SCRIPTING</span>
+            <h3 class="item-title">jQuery &amp; DOM Scripting</h3>
+            <p class="item-desc">Dynamic element manipulation, AJAX asynchronous data requests, event binding, and interactive UI animations.</p>
+            <div class="item-chips">
+              <span>jQuery</span><span>AJAX</span><span>DOM Manipulation</span>
+            </div>
+          </div>
+
+          <!-- 7. PHP Server Logic -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="backend">
+            <div class="item-icon-box"><i class="fa-brands fa-php"></i></div>
+            <span class="item-tag">SERVER LOGIC</span>
+            <h3 class="item-title">PHP Server Logic</h3>
+            <p class="item-desc">Backend application routing, session authentication, prepared statements, form sanitization, and database integration.</p>
+            <div class="item-chips">
+              <span>PHP 8</span><span>OOP</span><span>Sessions</span>
+            </div>
+          </div>
+
+          <!-- 8. MySQL & Relational SQL -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="database">
+            <div class="item-icon-box"><i class="fa-solid fa-database"></i></div>
+            <span class="item-tag">RELATIONAL SQL</span>
+            <h3 class="item-title">MySQL &amp; Relational SQL</h3>
+            <p class="item-desc">Relational schema design, foreign keys, indexing, table joins, transactional integrity, and query optimization.</p>
+            <div class="item-chips">
+              <span>MySQL</span><span>SQL Queries</span><span>RDBMS</span>
+            </div>
+          </div>
+
+          <!-- 9. Cybersecurity Fundamentals -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="security">
+            <div class="item-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+            <span class="item-tag">DEFENSIVE SHIELD</span>
+            <h3 class="item-title">Cybersecurity Fundamentals</h3>
+            <p class="item-desc">Defensive security concepts, network protocol analysis, vulnerability identification, and practical system hardening.</p>
+            <div class="item-chips">
+              <span>Defensive</span><span>Hardening</span><span>NetSec</span>
+            </div>
+          </div>
+
+          <!-- 10. SOC Analyst Foundations -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="security">
+            <div class="item-icon-box"><i class="fa-solid fa-tower-observation"></i></div>
+            <span class="item-tag">OPERATIONS</span>
+            <h3 class="item-title">SOC Analyst Foundations</h3>
+            <p class="item-desc">Log auditing, telemetry monitoring, incident triage methodology, event investigation, and threat detection.</p>
+            <div class="item-chips">
+              <span>Log Analysis</span><span>Triage</span><span>Telemetry</span>
+            </div>
+          </div>
+
+          <!-- 11. AI Tools & Workflows -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="tools">
+            <div class="item-icon-box"><i class="fa-solid fa-robot"></i></div>
+            <span class="item-tag">AI ENGINEERING</span>
+            <h3 class="item-title">AI Tools &amp; Workflows</h3>
+            <p class="item-desc">Model Context Protocol (MCP), Cursor YOLO workflows, multi-agent developer environments, and prompt engineering.</p>
+            <div class="item-chips">
+              <span>MCP</span><span>Cursor</span><span>AI Workflows</span>
+            </div>
+          </div>
+
+          <!-- 12. Git, GitHub & Linux CLI -->
+          <div class="luxury-glass-card arsenal-item-card" data-category="tools">
+            <div class="item-icon-box"><i class="fa-brands fa-git-alt"></i></div>
+            <span class="item-tag">COLLABORATION</span>
+            <h3 class="item-title">Git, GitHub &amp; Linux CLI</h3>
+            <p class="item-desc">Branching models, atomic commits, repository workflows, release tracking, Bash scripting, and Linux terminal tools.</p>
+            <div class="item-chips">
+              <span>Git</span><span>GitHub</span><span>Linux Bash</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 06. FEATURED PROJECT: VUBIX                -->
+    <!-- ========================================== -->
+    <section class="section-block" id="work">
+      <div class="section-container">
+        
+        <!-- Solo Leveling Shadow Monarch Section Header -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag shadow-tag">SHADOW MONARCH DOMAIN</span>
+          <div class="header-main-title-wrap">
+            <svg class="shadow-flame-svg shadow-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q25,2 50,16 T100,15 M15,18 Q45,28 75,12 M35,14 Q65,4 90,20" stroke-linecap="round"/>
+            </svg>
+            <h2 class="demonic-main-title shadow-title">FEATURED PROJECT</h2>
+            <svg class="shadow-flame-svg shadow-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q25,2 50,16 T100,15 M15,18 Q45,28 75,12 M35,14 Q65,4 90,20" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">High-performance media indexing platform built from scratch.</p>
+        </div>
+
+        <div class="luxury-glass-card vubix-feature-card">
+          <div class="vubix-top-bar">
+            <div class="vubix-tag-group">
+              <span class="vubix-badge">PRODUCTION LIVE</span>
+              <span class="vubix-tag">FULL-STACK APP</span>
+            </div>
+            <a href="https://vubix.duckdns.org/" target="_blank" rel="noopener noreferrer" class="btn-pill-white">
+              <span>Launch Vubix</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+
+          <div class="vubix-content-grid">
+            <!-- Left: Vector Mockup -->
+            <div class="vubix-mockup-wrap">
+              <img src="assets/vubix-preview.svg" alt="Vubix Platform Preview" class="vubix-img" />
+            </div>
+
+            <!-- Right: Details -->
+            <div class="vubix-details-wrap">
+              <h3 class="vubix-platform-title">VUBIX</h3>
+              <p class="vubix-tagline">Watch movies, series, anime, and manga online.</p>
+
+              <div class="vubix-feature-list">
+                <div class="vubix-feature-item">
+                  <div class="feat-icon"><i class="fa-solid fa-film"></i></div>
+                  <div>
+                    <span class="feat-title">All-in-One Entertainment</span>
+                    <p class="feat-desc">Stream and search movies, TV shows, anime, and manga in one fast interface.</p>
+                  </div>
+                </div>
+
+                <div class="vubix-feature-item">
+                  <div class="feat-icon"><i class="fa-solid fa-bolt"></i></div>
+                  <div>
+                    <span class="feat-title">Fast &amp; Responsive</span>
+                    <p class="feat-desc">Built with Next.js and Tailwind CSS for smooth performance on any screen.</p>
+                  </div>
+                </div>
+
+                <div class="vubix-feature-item">
+                  <div class="feat-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                  <div>
+                    <span class="feat-title">Clean Experience</span>
+                    <p class="feat-desc">Dark theme interface designed for simple navigation and quick playback.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 07. CHRONICLES OF ASCENT (ACADEMIC/ROAD)   -->
+    <!-- ========================================== -->
+    <section class="section-block" id="journey">
+      <div class="section-container">
+        
+        <!-- Script-Kittens Spirit Death-Metal Title Header -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag">PATH OF CONQUEST</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <h2 class="demonic-main-title deathmetal-title">CHRONICLES</h2>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Formal computer science degree, rigorous industry programs, and ongoing mastery.</p>
+        </div>
+
+        <div class="chronicles-grid">
+          
+          <!-- Item 1: Bachelor of IT Degree -->
+          <div class="luxury-glass-card chron-card">
+            <div class="chron-badge-row">
+              <span class="chron-type-badge">ACADEMIC DEGREE</span>
+              <span class="chron-status-done">✓ COMPLETED</span>
+            </div>
+            <h3 class="chron-title">Bachelor of Information Technology</h3>
+            <span class="chron-meta">Computer Science &amp; Software Engineering Curriculum</span>
+            <p class="chron-desc">
+              Comprehensive degree covering core computing pillars: Object-Oriented Programming (OOP), Data Structures &amp; Algorithms, Relational Database Management (RDBMS), Computer Networks, Operating Systems, and Information &amp; Cyber Security.
+            </p>
+            <div class="chron-chips">
+              <span>OOP &amp; Data Structures</span><span>RDBMS (SQL)</span><span>Computer Networks</span><span>InfoSec</span>
+            </div>
+          </div>
+
+          <!-- Item 2: SMIT -->
+          <div class="luxury-glass-card chron-card">
+            <div class="chron-badge-row">
+              <span class="chron-type-badge">TECHNICAL TRAINING</span>
+              <span class="chron-status-done">✓ COMPLETED</span>
+            </div>
+            <h3 class="chron-title">Front-End Development Certification</h3>
+            <span class="chron-meta">SMIT</span>
+            <p class="chron-desc">
+              Intensive training program focused on modern frontend web engineering: mastering semantic HTML5, advanced responsive CSS3 layouts, JavaScript DOM manipulation, UI frameworks, and web standards.
+            </p>
+            <div class="chron-chips">
+              <span>HTML5 &amp; CSS3</span><span>JavaScript DOM</span><span>Responsive UI</span>
+            </div>
+          </div>
+
+          <!-- Item 3: DTAN -->
+          <div class="luxury-glass-card chron-card">
+            <div class="chron-badge-row">
+              <span class="chron-type-badge">SPECIALIZED PROGRAM</span>
+              <span class="chron-status-done">✓ COMPLETED</span>
+            </div>
+            <h3 class="chron-title">AI Web Development Program</h3>
+            <span class="chron-meta">DTAN</span>
+            <p class="chron-desc">
+              Practical full-stack training covering HTML5, CSS3, JavaScript, Bootstrap, jQuery, server-side PHP, MySQL relational database management, and AI-assisted development tools.
+            </p>
+            <div class="chron-chips">
+              <span>PHP &amp; MySQL</span><span>Bootstrap &amp; jQuery</span><span>AI Tooling</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Continuous Frontier -->
+          <div class="luxury-glass-card chron-card highlight-frontier">
+            <div class="chron-badge-row">
+              <span class="chron-type-badge">CONTINUOUS MASTERY</span>
+              <span class="chron-status-live">● ACTIVE PURSUIT</span>
+            </div>
+            <h3 class="chron-title">Cybersecurity, SOC &amp; Agentic AI</h3>
+            <span class="chron-meta">Defensive Operations &amp; Autonomous Systems</span>
+            <p class="chron-desc">
+              Actively mastering hands-on defensive security protocols, Security Operations Center (SOC) telemetry, log triage, threat detection, and orchestrating multi-agent systems via Model Context Protocol (MCP).
+            </p>
+            <div class="chron-chips">
+              <span>Defensive Security</span><span>SOC Telemetry</span><span>AI Agents &amp; MCP</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 08. TRANSMISSION NEXUS (CONTACT & SOCIALS) -->
+    <!-- ========================================== -->
+    <section class="section-block" id="contact">
+      <div class="section-container">
+        
+        <!-- Script-Kittens Spirit Death-Metal Title Header -->
+        <div class="demonic-section-header">
+          <span class="header-top-tag">TRANSMISSION NEXUS</span>
+          <div class="header-main-title-wrap">
+            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+            <div class="summon-title-stage" id="summonStage">
+              <img src="assets/title-summon-single-dragon-s.png?v=2" alt="SUMMON" class="summon-title-graphic" id="summonTitleGraphic" />
+            </div>
+            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
+              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="section-subhead">Reach out directly via Discord, encrypted email, or repository channels.</p>
+        </div>
+
+        <div class="contact-cards-layout">
+          
+          <!-- Channels Card -->
+          <div class="luxury-glass-card contact-details-card">
+            <h3 class="contact-box-title">Direct Channels</h3>
+            <p class="contact-box-sub">Available for high-concurrency development, security missions, and engineering collaborations.</p>
+
+            <div class="channel-items-list">
+              
+              <div class="channel-row">
+                <div class="channel-icon-box"><i class="fa-brands fa-discord"></i></div>
+                <div class="channel-info">
+                  <span class="channel-label">DISCORD PROFILE</span>
+                  <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="channel-value">dopevibez</a>
+                </div>
+                <button class="copy-pill-btn" data-copy="dopevibez" title="Copy Discord handle">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Copy</span>
+                </button>
+              </div>
+
+              <div class="channel-row">
+                <div class="channel-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                <div class="channel-info">
+                  <span class="channel-label">PRIMARY EMAIL</span>
+                  <a href="mailto:dopevibex@gmail.com" class="channel-value">dopevibex@gmail.com</a>
+                </div>
+                <button class="copy-pill-btn" data-copy="dopevibex@gmail.com" title="Copy Email">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Copy</span>
+                </button>
+              </div>
+
+              <div class="channel-row">
+                <div class="channel-icon-box"><i class="fa-brands fa-github"></i></div>
+                <div class="channel-info">
+                  <span class="channel-label">GITHUB REPOSITORIES</span>
+                  <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="channel-value">github.com/dopevibex</a>
+                </div>
+                <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="copy-pill-btn" title="Open GitHub">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Direct Message Form -->
+          <div class="luxury-glass-card contact-form-card">
+            <h3 class="contact-box-title">Transmit Message</h3>
+            <p class="contact-box-sub">Send a direct message or project inquiry.</p>
+
+            <form id="nexusContactForm" class="contact-form-glass" onsubmit="return handleFormSubmit(event)">
+              <div class="input-field-group">
+                <label for="formName">OPERATOR NAME</label>
+                <input type="text" id="formName" required placeholder="Your name or handle..." />
+              </div>
+
+              <div class="input-field-group">
+                <label for="formEmail">RETURN EMAIL</label>
+                <input type="email" id="formEmail" required placeholder="your.email@domain.com" />
+              </div>
+
+              <div class="input-field-group">
+                <label for="formMessage">MESSAGE BODY</label>
+                <textarea id="formMessage" rows="4" required placeholder="Describe your project, mission, or inquiry..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-pill-white btn-submit-full" id="formSubmitBtn">
+                <span>Send Transmission</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+              <div class="form-result-msg" id="formFeedback"></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 09. SCRIPT-KITTENS STYLE FOOTER            -->
+  <!-- ========================================== -->
+  <footer class="sk-style-footer">
+    <div class="sk-footer-inner">
+      
+      <!-- Top Columns: Projects, Navigation & Connect -->
+      <div class="sk-footer-cols">
+        <div class="sk-col">
+          <h4 class="sk-col-title">PROJECTS</h4>
+          <ul class="sk-col-list">
+            <li><a href="https://vubix.duckdns.org/" target="_blank" rel="noopener noreferrer">Vubix</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-col">
+          <h4 class="sk-col-title">NAVIGATION</h4>
+          <ul class="sk-col-list">
+            <li><a href="#about">Identity</a></li>
+            <li><a href="#skills">Arsenal</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#journey">Chronicles</a></li>
+            <li><a href="#contact">Nexus</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-col">
+          <h4 class="sk-col-title">CONNECT</h4>
+          <ul class="sk-col-list">
+            <li><a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer">Discord</a></li>
+            <li><a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pill Social Icon Badges (Discord & GitHub) -->
+      <div class="sk-social-pill-row">
+        <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="sk-social-icon-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="sk-social-icon-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+
+      <!-- Giant Stylized Moving Marquee in Footer -->
+      <div class="sk-footer-giant-banner">
+        <div class="sk-banner-scroll">
+          <span>DOPE</span>
+          <span class="banner-sep">♦</span>
+          <span class="banner-red-glow">DEVELOPER</span>
+          <span class="banner-sep">♦</span>
+          <span>SOVEREIGN</span>
+          <span class="banner-sep">♦</span>
+          <span class="banner-red-glow">VUBIX</span>
+          <span class="banner-sep">♦</span>
+          <span>DOPE</span>
+          <span class="banner-sep">♦</span>
+          <span class="banner-red-glow">DEVELOPER</span>
+          <span class="banner-sep">♦</span>
+          <span>SOVEREIGN</span>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Line -->
+      <div class="sk-footer-bottom">
+        <p class="sk-copy">© 2026 DOPE. All rights reserved.</p>
+        <div class="sk-bottom-links">
+          <a href="#hero">Apex</a>
+          <a href="#work">Vubix</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Core App Controller with Cache Buster -->
+  <script src="app.js?v=26"></script>
+
+  <!-- 3D Sword Fighting Game Module -->
+  <script type="module">
+    import { GameModule } from './game/index.js';
+
+    function initGameModule() {
+      const container = document.getElementById('game3dCanvasContainer');
+      const resetBtn = document.getElementById('game3dResetCamBtn');
+
+      if (!container) return;
+
+      // Mount Three.js 3D Game Foundation & Fighter
+      GameModule.mount(container);
+
+      // Camera Reset Handler
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          GameModule.resetCamera();
+        });
+      }
+
+      // Pause loop when scrolled off-screen for zero background CPU/GPU overhead
+      if (typeof IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              GameModule.resume();
+            } else {
+              GameModule.pause();
+            }
+          });
+        }, { threshold: 0.05 });
+
+        observer.observe(container);
+      }
+
+      // Clean global reference
+      window.GameModule = GameModule;
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGameModule);
+    } else {
+      initGameModule();
+    }
+  </script>
+</body>
+</html>

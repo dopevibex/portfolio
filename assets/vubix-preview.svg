@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vubixBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050508" />
+      <stop offset="50%" stop-color="#0a0c14" />
+      <stop offset="100%" stop-color="#020204" />
+    </linearGradient>
+    <linearGradient id="crimsonGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff1e42" />
+      <stop offset="100%" stop-color="#99001f" />
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <filter id="shadowFilt" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#000000" flood-opacity="0.9" />
+      <feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="#ff1e42" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="url(#vubixBg)" />
+
+  <!-- Window Frame -->
+  <rect x="40" y="30" width="820" height="460" rx="14" fill="#090a10" stroke="#251218" stroke-width="1.5" filter="url(#shadowFilt)" />
+
+  <!-- Navbar -->
+  <rect x="40" y="30" width="820" height="54" rx="14" fill="#06070a" />
+  <line x1="40" y1="84" x2="860" y2="84" stroke="#1f0f15" stroke-width="1" />
+  
+  <!-- Window Controls -->
+  <circle cx="68" cy="57" r="5" fill="#ff1e42" />
+  <circle cx="86" cy="57" r="5" fill="#4a1520" />
+  <circle cx="104" cy="57" r="5" fill="#260b10" />
+
+  <!-- Logo -->
+  <rect x="140" y="44" width="26" height="26" rx="6" fill="url(#crimsonGlow)" />
+  <polygon points="149,50 160,57 149,64" fill="#ffffff" />
+  <text x="176" y="62" font-family="'Inter', sans-serif" font-weight="900" font-size="16" fill="#ffffff" letter-spacing="2">VUBIX</text>
+
+  <!-- Nav links -->
+  <text x="320" y="61" font-family="'Inter', sans-serif" font-size="12" fill="#ffffff" font-weight="600">Movies</text>
+  <text x="390" y="61" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa">TV Shows</text>
+  <text x="475" y="61" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa">Anime Hub</text>
+  <text x="570" y="61" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa">Manga</text>
+  <text x="645" y="61" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa">Novels</text>
+
+  <!-- Search Pill -->
+  <rect x="710" y="45" width="130" height="26" rx="13" fill="#131016" stroke="#33141e" stroke-width="1" />
+  <text x="730" y="62" font-family="'Inter', sans-serif" font-size="10" fill="#71717a">Search media...</text>
+
+  <!-- Hero Featured Banner inside App -->
+  <rect x="65" y="105" width="770" height="190" rx="10" fill="#0e0f17" stroke="#2a121a" stroke-width="1" />
+  <rect x="65" y="105" width="770" height="190" rx="10" fill="url(#crimsonGlow)" fill-opacity="0.08" />
+  
+  <rect x="95" y="130" width="85" height="20" rx="4" fill="#ff1e42" fill-opacity="0.15" stroke="#ff1e42" stroke-width="1" />
+  <text x="105" y="144" font-family="'Inter', sans-serif" font-size="9" fill="#ff1e42" font-weight="bold">FEATURED</text>
+
+  <text x="95" y="185" font-family="'Inter', sans-serif" font-size="26" fill="#ffffff" font-weight="900">Watch Movies &amp; Anime Online</text>
+  <text x="95" y="210" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa">Clean media hub for movies, television series, anime, and manga.</text>
+
+  <rect x="95" y="235" width="120" height="34" rx="8" fill="url(#crimsonGlow)" />
+  <polygon points="115,246 126,252 115,258" fill="#ffffff" />
+  <text x="135" y="256" font-family="'Inter', sans-serif" font-size="12" fill="#ffffff" font-weight="bold">Watch Now</text>
+
+  <rect x="225" y="235" width="110" height="34" rx="8" fill="#17121b" stroke="#381b26" stroke-width="1" />
+  <text x="250" y="256" font-family="'Inter', sans-serif" font-size="12" fill="#e4e4e7" font-weight="600">+ Watchlist</text>
+
+  <!-- Media Cards Row -->
+  <text x="65" y="325" font-family="'Inter', sans-serif" font-size="14" fill="#ffffff" font-weight="700">Trending Now</text>
+
+  <!-- Card 1 -->
+  <rect x="65" y="340" width="135" height="130" rx="8" fill="#10111a" stroke="#25141d" stroke-width="1" />
+  <rect x="75" y="350" width="115" height="75" rx="5" fill="#181320" />
+  <circle cx="132" cy="387" r="14" fill="url(#crimsonGlow)" />
+  <polygon points="130,381 138,387 130,393" fill="#ffffff" />
+  <text x="75" y="445" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" font-weight="bold">Anime Hub</text>
+  <text x="75" y="460" font-family="'Inter', sans-serif" font-size="9" fill="#ff1e42">HD 1080p • Episodes</text>
+
+  <!-- Card 2 -->
+  <rect x="220" y="340" width="135" height="130" rx="8" fill="#10111a" stroke="#25141d" stroke-width="1" />
+  <rect x="230" y="350" width="115" height="75" rx="5" fill="#181320" />
+  <circle cx="287" cy="387" r="14" fill="url(#crimsonGlow)" />
+  <polygon points="285,381 293,387 285,393" fill="#ffffff" />
+  <text x="230" y="445" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" font-weight="bold">Cinema Movies</text>
+  <text x="230" y="460" font-family="'Inter', sans-serif" font-size="9" fill="#a1a1aa">4K • Multi-Audio</text>
+
+  <!-- Card 3 -->
+  <rect x="375" y="340" width="135" height="130" rx="8" fill="#10111a" stroke="#25141d" stroke-width="1" />
+  <rect x="385" y="350" width="115" height="75" rx="5" fill="#181320" />
+  <circle cx="442" cy="387" r="14" fill="url(#purpleGlow)" />
+  <polygon points="440,381 448,387 440,393" fill="#ffffff" />
+  <text x="385" y="445" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" font-weight="bold">TV Series</text>
+  <text x="385" y="460" font-family="'Inter', sans-serif" font-size="9" fill="#a1a1aa">Complete Seasons</text>
+
+  <!-- Card 4 -->
+  <rect x="530" y="340" width="135" height="130" rx="8" fill="#10111a" stroke="#25141d" stroke-width="1" />
+  <rect x="540" y="350" width="115" height="75" rx="5" fill="#181320" />
+  <circle cx="597" cy="387" r="14" fill="url(#crimsonGlow)" />
+  <polygon points="595,381 603,387 595,393" fill="#ffffff" />
+  <text x="540" y="445" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" font-weight="bold">Manga Reader</text>
+  <text x="540" y="460" font-family="'Inter', sans-serif" font-size="9" fill="#a1a1aa">Chapter Releases</text>
+
+  <!-- Card 5 -->
+  <rect x="685" y="340" width="135" height="130" rx="8" fill="#10111a" stroke="#25141d" stroke-width="1" />
+  <rect x="695" y="350" width="115" height="75" rx="5" fill="#181320" />
+  <circle cx="752" cy="387" r="14" fill="url(#purpleGlow)" />
+  <polygon points="750,381 758,387 750,393" fill="#ffffff" />
+  <text x="695" y="445" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" font-weight="bold">Novels &amp; Books</text>
+  <text x="695" y="460" font-family="'Inter', sans-serif" font-size="9" fill="#a1a1aa">Digital Library</text>
+</svg>
