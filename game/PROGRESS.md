@@ -43,6 +43,18 @@
 - Real-time procedural audio synthesis via WebAudio API (cleaver whooshes, harmonic parry clangs, heavy impacts, chain links, rage roar). Zero external MP3 files.
 - Gothic HUD with Sovereign health/stamina/rage bars, boss health bar, aim reticle, subtitle runner, dev stats overlay, and victory/defeat modal.
 
+### Slice 8: In-Engine Chrome DevTools Protocol & Visual Polish Verification
+- **Status:** PASS
+- Automated Chrome Headless test script executed with real WebGL rendering (`test_sanctum_game.mjs`).
+- Verified:
+  1. Entry button click triggers dynamic import cleanly without initial bundle bloat.
+  2. Fullscreen overlay and WebGL canvas mount at 1262x704.
+  3. Prologue letterbox subtitles run and transition into Wave 1.
+  4. Wave 1 Ashen Thralls spawn at cathedral dais coordinates.
+  5. Directional moonlight (`0xd8e4f0`), hemisphere fill (`0x64748b`), and central crimson brazier point light (`0xef4444`) provide clear gothic silhouette and rim specular on armor without crushing to pitch black.
+  6. Exit button click (`ESC` / UI button) cleanly disposes Three.js scene, unmounts the overlay from DOM, restores scroll and returns entry card button to active state.
+  7. 0 console errors, 0 runtime exceptions.
+
 ---
 
 ## 2. PERFORMANCE & BUDGET AUDIT
