@@ -1211,72 +1211,70 @@
           
           <!-- Channels Card -->
           <div class="luxury-glass-card contact-details-card">
-            <h3 class="contact-box-title">Direct Channels</h3>
-            <p class="contact-box-sub">Available for high-concurrency development, security missions, and engineering collaborations.</p>
+            <h3 class="contact-box-title">Contact</h3>
+            <p class="contact-box-sub">Feel free to reach out for collaborations, opportunities, or inquiries.</p>
 
             <div class="channel-items-list">
               
-              <div class="channel-row">
+              <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="channel-row channel-link-card">
                 <div class="channel-icon-box"><i class="fa-brands fa-discord"></i></div>
                 <div class="channel-info">
-                  <span class="channel-label">DISCORD PROFILE</span>
-                  <a href="https://discord.com/users/dopevibez" target="_blank" rel="noopener noreferrer" class="channel-value">dopevibez</a>
+                  <span class="channel-label">DISCORD</span>
+                  <span class="channel-action-text">Connect on Discord</span>
                 </div>
-                <button class="copy-pill-btn" data-copy="dopevibez" title="Copy Discord handle">
-                  <i class="fa-regular fa-copy"></i>
-                  <span>Copy</span>
-                </button>
-              </div>
+                <div class="channel-action-btn">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+              </a>
 
-              <div class="channel-row">
+              <a href="mailto:dopevibex@gmail.com" class="channel-row channel-link-card">
                 <div class="channel-icon-box"><i class="fa-solid fa-envelope"></i></div>
                 <div class="channel-info">
-                  <span class="channel-label">PRIMARY EMAIL</span>
-                  <a href="mailto:dopevibex@gmail.com" class="channel-value">dopevibex@gmail.com</a>
+                  <span class="channel-label">EMAIL</span>
+                  <span class="channel-action-text">Send an Email</span>
                 </div>
-                <button class="copy-pill-btn" data-copy="dopevibex@gmail.com" title="Copy Email">
-                  <i class="fa-regular fa-copy"></i>
-                  <span>Copy</span>
-                </button>
-              </div>
+                <div class="channel-action-btn">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+              </a>
 
-              <div class="channel-row">
+              <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="channel-row channel-link-card">
                 <div class="channel-icon-box"><i class="fa-brands fa-github"></i></div>
                 <div class="channel-info">
-                  <span class="channel-label">GITHUB REPOSITORIES</span>
-                  <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="channel-value">github.com/dopevibex</a>
+                  <span class="channel-label">GITHUB</span>
+                  <span class="channel-action-text">Visit GitHub Profile</span>
                 </div>
-                <a href="https://github.com/dopevibex" target="_blank" rel="noopener noreferrer" class="copy-pill-btn" title="Open GitHub">
+                <div class="channel-action-btn">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
+                </div>
+              </a>
 
             </div>
           </div>
 
           <!-- Direct Message Form -->
           <div class="luxury-glass-card contact-form-card">
-            <h3 class="contact-box-title">Transmit Message</h3>
-            <p class="contact-box-sub">Send a direct message or project inquiry.</p>
+            <h3 class="contact-box-title">Send a Message</h3>
+            <p class="contact-box-sub">Send a message or project inquiry.</p>
 
             <form id="nexusContactForm" class="contact-form-glass" onsubmit="return handleFormSubmit(event)">
               <div class="input-field-group">
-                <label for="formName">OPERATOR NAME</label>
-                <input type="text" id="formName" required placeholder="Your name or handle..." />
+                <label for="formName">NAME</label>
+                <input type="text" id="formName" required placeholder="Your name..." />
               </div>
 
               <div class="input-field-group">
-                <label for="formEmail">RETURN EMAIL</label>
+                <label for="formEmail">EMAIL</label>
                 <input type="email" id="formEmail" required placeholder="your.email@domain.com" />
               </div>
 
               <div class="input-field-group">
-                <label for="formMessage">MESSAGE BODY</label>
-                <textarea id="formMessage" rows="4" required placeholder="Describe your project, mission, or inquiry..."></textarea>
+                <label for="formMessage">MESSAGE</label>
+                <textarea id="formMessage" rows="4" required placeholder="Write your message here..."></textarea>
               </div>
 
               <button type="submit" class="btn-pill-white btn-submit-full" id="formSubmitBtn">
-                <span>Send Transmission</span>
+                <span>Send Message</span>
                 <i class="fa-solid fa-paper-plane"></i>
               </button>
               <div class="form-result-msg" id="formFeedback"></div>
