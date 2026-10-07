@@ -29,19 +29,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Main Stylesheet with Cache Buster -->
-  <link rel="stylesheet" href="styles.css?v=36" />
+  <link rel="stylesheet" href="styles.css?v=37" />
 
-  <!-- Three.js ES Module Importmap -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "./assets/vendor/three/three.module.js",
-      "three/addons/": "./assets/vendor/three/"
-    }
-  }
-  </script>
-
-  <!-- GSAP for Smooth Animations -->
+  <!-- GSAP for Smooth Hardware-Accelerated Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
@@ -82,7 +72,6 @@
       <!-- Desktop Navigation Links -->
       <nav class="nav-links" id="navLinks">
         <a href="#about" class="nav-link" data-section="about">Identity</a>
-        <a href="#arena3d" class="nav-link" data-section="arena3d">Arena</a>
         <a href="#skills" class="nav-link" data-section="skills">Arsenal</a>
         <a href="#work" class="nav-link" data-section="work">Projects</a>
         <a href="#journey" class="nav-link" data-section="journey">Chronicles</a>
@@ -141,28 +130,23 @@
         <span class="drawer-link-txt">Identity</span>
         <i class="fa-solid fa-chevron-right drawer-chevron"></i>
       </a>
-      <a href="#arena3d" class="drawer-link" data-section="arena3d">
-        <span class="drawer-link-num">02</span>
-        <span class="drawer-link-txt">Sanctum Arena (3D)</span>
-        <i class="fa-solid fa-chevron-right drawer-chevron"></i>
-      </a>
       <a href="#skills" class="drawer-link" data-section="skills">
-        <span class="drawer-link-num">03</span>
+        <span class="drawer-link-num">02</span>
         <span class="drawer-link-txt">Arsenal</span>
         <i class="fa-solid fa-chevron-right drawer-chevron"></i>
       </a>
       <a href="#work" class="drawer-link" data-section="work">
-        <span class="drawer-link-num">04</span>
+        <span class="drawer-link-num">03</span>
         <span class="drawer-link-txt">Projects</span>
         <i class="fa-solid fa-chevron-right drawer-chevron"></i>
       </a>
       <a href="#journey" class="drawer-link" data-section="journey">
-        <span class="drawer-link-num">05</span>
+        <span class="drawer-link-num">04</span>
         <span class="drawer-link-txt">Chronicles</span>
         <i class="fa-solid fa-chevron-right drawer-chevron"></i>
       </a>
       <a href="#contact" class="drawer-link" data-section="contact">
-        <span class="drawer-link-num">06</span>
+        <span class="drawer-link-num">05</span>
         <span class="drawer-link-txt">Nexus</span>
         <i class="fa-solid fa-chevron-right drawer-chevron"></i>
       </a>
@@ -852,56 +836,7 @@
       <div class="marquee-bottom-ambient-light" aria-hidden="true"></div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- 04. SANCTUM ARENA (3D STAGE FOUNDATION)    -->
-    <!-- ========================================== -->
-    <section class="section-block game3d-section" id="arena3d">
-      <div class="section-container">
-        
-        <!-- Gothic Section Header -->
-        <div class="demonic-section-header">
-          <span class="header-top-tag">3D ENVIRONMENT &bull; STAGE 1 FOUNDATION</span>
-          <div class="header-main-title-wrap">
-            <svg class="root-tendril-svg root-left" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8">
-              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
-            </svg>
-            <h2 class="demonic-main-title deathmetal-title">SANCTUM ARENA</h2>
-            <svg class="root-tendril-svg root-right" viewBox="0 0 100 30" fill="none" stroke="#ff1e42" stroke-width="1.8" style="transform: scaleX(-1);">
-              <path d="M0,15 Q30,5 60,18 T100,15 M20,15 Q40,28 65,22 M50,16 Q75,4 95,12" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <p class="section-subhead">Procedural monolithic colosseum rendered via WebGL. Explore the 3D atmospheric lighting, obsidian monoliths, and dais geometry.</p>
-        </div>
 
-        <!-- 3D Sanctum Action Game Entry Card -->
-        <div class="dope-game-entry-card" id="sanctumGameEntryCard">
-          <div class="dope-game-entry-badge">
-            <i class="fa-solid fa-skull"></i>
-            <span>3D ACTION COMBAT &bull; GOD-OF-WAR STYLE</span>
-          </div>
-          <h3 class="dope-game-entry-title">SANCTUM: THE BOUND SOVEREIGN</h3>
-          <p class="dope-game-entry-lore">
-            They broke your crown upon the altar stone, yet left the iron in your blood. Wield the chained Cinder Cleaver, shatter the Ashen Thralls, and claim vengeance against Malphas, The Throne Warden.
-          </p>
-          <button type="button" class="dope-game-enter-btn" id="dopeGameEnterBtn">
-            <i class="fa-solid fa-play"></i>
-            <span>ENTER THE SANCTUM</span>
-          </button>
-          <div class="dope-game-controls-bar">
-            <div class="dope-game-ctrl-item"><span>WASD</span> Move</div>
-            <div class="dope-game-ctrl-item"><span>LMB</span> Light Combo</div>
-            <div class="dope-game-ctrl-item"><span>Q</span> Heavy Breaker</div>
-            <div class="dope-game-ctrl-item"><span>RMB</span> Aim &amp; Throw</div>
-            <div class="dope-game-ctrl-item"><span>E</span> Recall</div>
-            <div class="dope-game-ctrl-item"><span>F</span> Finisher</div>
-            <div class="dope-game-ctrl-item"><span>SPACE</span> Dodge</div>
-            <div class="dope-game-ctrl-item"><span>R</span> Rage Mode</div>
-            <div class="dope-game-ctrl-item"><span>ESC</span> Exit</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
 
     <!-- ========================================== -->
     <!-- 05. ARSENAL (DEMONIC ARSENAL)              -->
@@ -1426,34 +1361,7 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Core App Controller with Cache Buster -->
-  <script src="app.js?v=26"></script>
+  <script src="app.js?v=27"></script>
 
-  <!-- Scoped Sanctum Game Stylesheet -->
-  <link rel="stylesheet" href="./game/game.css" />
-
-  <!-- Lazy-Loaded 3D Sanctum Action Game Module -->
-  <script type="module">
-    let gameInstance = null;
-    const enterBtn = document.getElementById('dopeGameEnterBtn');
-
-    if (enterBtn) {
-      enterBtn.addEventListener('click', async () => {
-        try {
-          enterBtn.disabled = true;
-          enterBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>ENTERING SANCTUM...</span>';
-
-          const { mountGame } = await import('./game/index.js');
-          gameInstance = mountGame(document.body, () => {
-            enterBtn.disabled = false;
-            enterBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>ENTER THE SANCTUM</span>';
-          });
-        } catch (err) {
-          console.error('[SanctumGame] Error lazy-loading game module:', err);
-          enterBtn.disabled = false;
-          enterBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>ENTER THE SANCTUM</span>';
-        }
-      });
-    }
-  </script>
 </body>
 </html>

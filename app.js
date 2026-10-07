@@ -55,9 +55,8 @@ function initTKTSoundtrack() {
     });
   }
 
-  // Persistent interaction unlockers: triggers audio upon ANY first interaction
-  const events = ['click', 'pointerdown', 'pointermove', 'mousemove', 'keydown', 'touchstart', 'scroll', 'wheel'];
-  
+  const events = ['click', 'pointerdown', 'keydown', 'touchstart'];
+
   function handleUserGesture() {
     attemptAutoPlay();
   }
@@ -88,14 +87,12 @@ function initTKTSoundtrack() {
   }
 
   events.forEach(evt => {
-    window.addEventListener(evt, handleUserGesture, { passive: true });
-    document.addEventListener(evt, handleUserGesture, { passive: true });
+    window.addEventListener(evt, handleUserGesture, { passive: true, once: true });
+    document.addEventListener(evt, handleUserGesture, { passive: true, once: true });
   });
 
-  // Try immediate autoplay at script load
   attemptAutoPlay();
 
-  // Manual Toggle Button Handler
   if (audioBtn) {
     audioBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -123,7 +120,7 @@ function toggleSoundtrack() {
         showToast('Soundtrack: T-KT (Attack on Titan OST) Playing');
       })
       .catch(() => {
-        showToast('Click anywhere on the screen to allow audio');
+        showToast('Click anywhere to allow audio');
       });
   } else {
     bgAudio.pause();
@@ -150,15 +147,13 @@ function startSoundtrack() {
           if (audioBtn) audioBtn.classList.add('playing');
           if (audioStatusTxt) audioStatusTxt.textContent = 'T-KT: ON';
         })
-        .catch((err) => {
-          console.warn('Initial autoplay waiting for user interaction:', err);
-        });
+        .catch(() => {});
     }
   }
 }
 
 /* ========================================================= */
-/* 02. DEMONIC GATE PRELOADER (AUTOMATIC GATE TEAR)          */
+/* 02. DEMONIC GATE PRELOADER (SMOOTH HARDWARE ACCELERATED)  */
 /* ========================================================= */
 function initPreloaderGate() {
   const preloader = document.getElementById('preloader');
@@ -167,23 +162,22 @@ function initPreloaderGate() {
   const seamFill = document.querySelector('.pl-seam-fill');
   const replayBtn = document.getElementById('replayGateBtn');
 
-  // Lock scroll during preloader
   document.body.style.overflow = 'hidden';
 
   let currentPct = 0;
   let targetPct = 0;
-  let rafId;
+  let rafId = null;
   let isDone = false;
 
   function advance() {
     if (targetPct < 100) {
-      targetPct += Math.floor(Math.random() * 12 + 10);
+      targetPct += Math.floor(Math.random() * 14 + 12);
       if (targetPct >= 100) targetPct = 100;
     }
   }
 
   function loop() {
-    currentPct += (targetPct - currentPct) * 0.16;
+    currentPct += (targetPct - currentPct) * 0.20;
     if (targetPct >= 100 && currentPct >= 98.5) {
       currentPct = 100;
     }
@@ -194,54 +188,46 @@ function initPreloaderGate() {
     if (rounded >= 100 && !isDone) {
       isDone = true;
       clearInterval(advanceInterval);
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       if (seamFill) seamFill.style.height = '100%';
 
-      // Hold at 100% seam for 160ms, then slide doors open
       setTimeout(() => {
         openGatesSequence();
-      }, 160);
+      }, 140);
       return;
     }
 
     rafId = requestAnimationFrame(loop);
   }
 
-  // START PRELOADER SEAM FILL IMMEDIATELY
-  let advanceInterval = setInterval(advance, 70);
-  loop();
+  let advanceInterval = setInterval(advance, 60);
+  rafId = requestAnimationFrame(loop);
 
   function openGatesSequence() {
-    // 1. Establish initial hidden state so nothing shows before gate clears
     setHeroInitialState();
-
-    // 2. Slide Gates Apart
     preloader.classList.add('hidden');
 
-    // 3. Trigger Hero Entrance with a deliberate beat as gates reach outer edge (750ms)
     setTimeout(() => {
       triggerHeroEntrance();
-    }, 750);
+    }, 650);
 
-    // 4. Turn on music cleanly
     setTimeout(() => {
       startSoundtrack();
-    }, 1100);
+    }, 900);
 
     setTimeout(() => {
       document.body.style.overflow = '';
       preloader.style.display = 'none';
-    }, 1300);
+    }, 1100);
   }
 
-  // Clicking anywhere on preloader or pressing Enter/Space accelerates/opens gates
   preloader.addEventListener('click', () => {
     if (!isDone) {
       targetPct = 100;
       currentPct = 100;
       isDone = true;
       clearInterval(advanceInterval);
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       if (seamFill) seamFill.style.height = '100%';
       openGatesSequence();
     }
@@ -253,13 +239,12 @@ function initPreloaderGate() {
       currentPct = 100;
       isDone = true;
       clearInterval(advanceInterval);
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       if (seamFill) seamFill.style.height = '100%';
       openGatesSequence();
     }
   });
 
-  // Replay Gate Opening
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       preloader.style.display = 'flex';
@@ -270,9 +255,9 @@ function initPreloaderGate() {
       currentPct = 0;
       if (seamFill) seamFill.style.height = '0%';
       clearInterval(advanceInterval);
-      cancelAnimationFrame(rafId);
-      advanceInterval = setInterval(advance, 70);
-      loop();
+      if (rafId) cancelAnimationFrame(rafId);
+      advanceInterval = setInterval(advance, 60);
+      rafId = requestAnimationFrame(loop);
       showToast('Replaying Gate Entrance');
     });
   }
@@ -281,90 +266,61 @@ function initPreloaderGate() {
 function setHeroInitialState() {
   if (typeof gsap === 'undefined') return;
   gsap.set('.top-navbar', { y: -25, opacity: 0 });
-  gsap.set('.hero-deathmetal-floating-wrap', { x: 48, y: 0, opacity: 0, scale: 0.95 });
-  gsap.set('.hero-kicker', { y: 30, opacity: 0 });
-  gsap.set('.hero-main-title', { y: 45, opacity: 0 });
-  gsap.set('.hero-italic-subtitle', { y: 35, opacity: 0 });
-  gsap.set('.hero-description', { y: 35, opacity: 0 });
-  gsap.set('.hero-btn-row > *', { y: 30, opacity: 0 });
-  gsap.set('.hero-stats-row .stat-item', { y: 35, opacity: 0 });
+  gsap.set('.hero-deathmetal-floating-wrap', { x: 40, y: 0, opacity: 0, scale: 0.96 });
+  gsap.set('.hero-kicker', { y: 25, opacity: 0 });
+  gsap.set('.hero-main-title', { y: 35, opacity: 0 });
+  gsap.set('.hero-italic-subtitle', { y: 30, opacity: 0 });
+  gsap.set('.hero-description', { y: 30, opacity: 0 });
+  gsap.set('.hero-btn-row > *', { y: 25, opacity: 0 });
+  gsap.set('.hero-stats-row .stat-item', { y: 25, opacity: 0 });
 }
 
 /* ========================================================= */
-/* 03. REFINED CINEMATIC HERO ENTRANCE ANIMATION             */
+/* 03. CINEMATIC HERO ENTRANCE (GSAP HARDWARE ACCELERATED)   */
 /* ========================================================= */
 function triggerHeroEntrance() {
   if (typeof gsap === 'undefined') return;
 
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } });
 
-  // 1. Floating pill top navbar drops into position
-  tl.to('.top-navbar', 
-    { y: 0, opacity: 1, duration: 0.9 }, 
-    0
-  );
-
-  // 2. Right Column Deathmetal artwork glides in smoothly from right
-  tl.to('.hero-deathmetal-floating-wrap', 
-    { x: 0, opacity: 1, scale: 1, duration: 1.35, ease: 'power4.out' }, 
-    0.1
-  );
-
-  // 3. Hero Kicker rises from bottom
-  tl.to('.hero-kicker', 
-    { y: 0, opacity: 1, duration: 0.8 }, 
-    0.25
-  );
-
-  // 4. Hero Main Title DOPE rises smoothly from bottom
-  tl.to('.hero-main-title', 
-    { y: 0, opacity: 1, duration: 1.05, ease: 'power4.out' }, 
-    0.38
-  );
-
-  // 5. Italic Subtitle rises smoothly from bottom right behind title
-  tl.to('.hero-italic-subtitle', 
-    { y: 0, opacity: 1, duration: 0.95, ease: 'power4.out' }, 
-    0.5
-  );
-
-  // 6. Hero Description paragraph appears smoothly from bottom with a distinct delay
-  tl.to('.hero-description', 
-    { y: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }, 
-    0.75
-  );
-
-  // 7. Hero CTA Buttons rise smoothly from bottom
-  tl.to('.hero-btn-row > *', 
-    { y: 0, opacity: 1, stagger: 0.15, duration: 0.85, ease: 'power3.out' }, 
-    0.95
-  );
-
-  // 8. Hero Stats Numbers Row rises smoothly from bottom last
-  tl.to('.hero-stats-row .stat-item', 
-    { y: 0, opacity: 1, stagger: 0.15, duration: 0.9, ease: 'power3.out' }, 
-    1.2
-  );
+  tl.to('.top-navbar', { y: 0, opacity: 1, duration: 0.8 }, 0);
+  tl.to('.hero-deathmetal-floating-wrap', { x: 0, opacity: 1, scale: 1, duration: 1.2, ease: 'power4.out' }, 0.08);
+  tl.to('.hero-kicker', { y: 0, opacity: 1, duration: 0.7 }, 0.2);
+  tl.to('.hero-main-title', { y: 0, opacity: 1, duration: 0.95, ease: 'power4.out' }, 0.32);
+  tl.to('.hero-italic-subtitle', { y: 0, opacity: 1, duration: 0.85, ease: 'power4.out' }, 0.44);
+  tl.to('.hero-description', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, 0.65);
+  tl.to('.hero-btn-row > *', { y: 0, opacity: 1, stagger: 0.12, duration: 0.8, ease: 'power3.out' }, 0.82);
+  tl.to('.hero-stats-row .stat-item', { y: 0, opacity: 1, stagger: 0.12, duration: 0.85, ease: 'power3.out' }, 1.05);
 }
 
 /* ========================================================= */
-/* 04. EMBER & ATMOSPHERIC CANVAS                            */
+/* 04. HIGH-PERFORMANCE LIGHTWEIGHT EMBER CANVAS            */
 /* ========================================================= */
 function initEmberCanvas() {
   const canvas = document.getElementById('emberCanvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
+  let isRunning = true;
 
+  let resizeTimeout = null;
   window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, 150);
+  }, { passive: true });
+
+  document.addEventListener('visibilitychange', () => {
+    isRunning = !document.hidden;
+    if (isRunning) requestAnimationFrame(render);
   });
 
   const particles = [];
-  const count = 45;
+  const count = 28; // Optimized particle budget
 
   class Ember {
     constructor() {
@@ -373,11 +329,11 @@ function initEmberCanvas() {
     reset(initial = false) {
       this.x = Math.random() * width;
       this.y = initial ? Math.random() * height : height + 10;
-      this.radius = Math.random() * 2.0 + 0.6;
-      this.speedY = Math.random() * 0.9 + 0.3;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.alpha = Math.random() * 0.6 + 0.2;
-      this.color = Math.random() > 0.4 ? '#ff1e42' : '#ff758f';
+      this.radius = Math.random() * 1.8 + 0.5;
+      this.speedY = Math.random() * 0.7 + 0.25;
+      this.speedX = (Math.random() - 0.5) * 0.4;
+      this.alpha = Math.random() * 0.55 + 0.25;
+      this.isCrimson = Math.random() > 0.4;
     }
     update() {
       this.y -= this.speedY;
@@ -387,15 +343,17 @@ function initEmberCanvas() {
       }
     }
     draw() {
-      ctx.save();
       ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = this.color;
-      ctx.shadowColor = '#ff1e42';
-      ctx.shadowBlur = 8;
+      ctx.fillStyle = this.isCrimson ? '#ff1e42' : '#ff6b8b';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
+
+      // Outer soft corona without expensive shadowBlur
+      ctx.globalAlpha = this.alpha * 0.25;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius * 2.2, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 
@@ -404,19 +362,21 @@ function initEmberCanvas() {
   }
 
   function render() {
+    if (!isRunning) return;
     ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
+
+    for (let i = 0; i < count; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
     requestAnimationFrame(render);
   }
 
-  render();
+  requestAnimationFrame(render);
 }
 
 /* ========================================================= */
-/* 04. ARSENAL (SKILLS) CATEGORY FILTERS                     */
+/* 05. ARSENAL (SKILLS) CATEGORY FILTERS                     */
 /* ========================================================= */
 function initArsenalFilters() {
   const filterBtns = document.querySelectorAll('.filter-pill');
@@ -433,13 +393,8 @@ function initArsenalFilters() {
         const cat = card.getAttribute('data-category');
         if (filter === 'all' || cat === filter) {
           card.style.display = 'flex';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(12px)';
-          setTimeout(() => {
-            card.style.transition = 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 30);
+          card.style.opacity = '1';
+          card.style.transform = 'translate3d(0, 0, 0)';
         } else {
           card.style.display = 'none';
         }
@@ -449,21 +404,19 @@ function initArsenalFilters() {
 }
 
 /* ========================================================= */
-/* 05. NAVIGATION & SCROLL HANDLERS                          */
+/* 06. SMOOTH ZERO-LAG NAVIGATION (INTERSECTION OBSERVER)    */
 /* ========================================================= */
 function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   const drawerLinks = document.querySelectorAll('.drawer-link');
+  const sections = document.querySelectorAll('section[id]');
 
-  function updateActiveNav() {
-    const scrollY = window.scrollY;
-    const sections = document.querySelectorAll('section');
+  if (!('IntersectionObserver' in window)) return;
 
-    sections.forEach(sec => {
-      const top = sec.offsetTop - 180;
-      const height = sec.offsetHeight;
-      const id = sec.getAttribute('id');
-      if (scrollY >= top && scrollY < top + height) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
         navLinks.forEach(link => {
           if (link.getAttribute('href') === `#${id}`) {
             link.classList.add('active');
@@ -481,13 +434,16 @@ function initNavigation() {
         });
       }
     });
-  }
+  }, {
+    rootMargin: '-25% 0px -40% 0px',
+    threshold: 0.1
+  });
 
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  sections.forEach(sec => observer.observe(sec));
 }
 
 /* ========================================================= */
-/* 06. DEMONIC MOBILE DRAWER MENU CONTROLLER                 */
+/* 07. DEMONIC MOBILE DRAWER MENU CONTROLLER                 */
 /* ========================================================= */
 function initMobileDrawer() {
   const menuBtn = document.getElementById('mobileMenuBtn');
@@ -531,16 +487,11 @@ function initMobileDrawer() {
     });
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeDrawer);
-  }
-
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   backdrop.addEventListener('click', closeDrawer);
 
   drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      closeDrawer();
-    });
+    link.addEventListener('click', closeDrawer);
   });
 
   document.addEventListener('keydown', (e) => {
@@ -551,7 +502,7 @@ function initMobileDrawer() {
 }
 
 /* ========================================================= */
-/* 06. CLIPBOARD COPY & FORM DISPATCH                        */
+/* 08. CLIPBOARD COPY & FORM DISPATCH                        */
 /* ========================================================= */
 function initClipboardAndForms() {
   document.querySelectorAll('.copy-pill-btn').forEach(btn => {
@@ -565,7 +516,6 @@ function initClipboardAndForms() {
     });
   });
 
-  // Handle Discord Nav Click
   const discordNavBtn = document.getElementById('discordNavBtn');
   if (discordNavBtn) {
     discordNavBtn.addEventListener('click', () => {
@@ -609,15 +559,14 @@ function showToast(msg) {
   container.appendChild(toast);
 
   setTimeout(() => {
-    toast.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     toast.style.opacity = '0';
-    toast.style.transform = 'translateX(50px)';
-    setTimeout(() => toast.remove(), 400);
-  }, 3000);
+    toast.style.transform = 'translate3d(40px, 0, 0)';
+    setTimeout(() => toast.remove(), 350);
+  }, 2800);
 }
 
 /* ========================================================= */
-/* 07. IDENTITY 3D ELECTRIC & BLOOD ANIMATION ENGINE         */
+/* 09. IDENTITY 3D TILT & LIGHTNING (VIEWPORT-AWARE)         */
 /* ========================================================= */
 function initIdentityTitleAnimation() {
   const stage = document.getElementById('identityStage');
@@ -625,14 +574,19 @@ function initIdentityTitleAnimation() {
   const canvas = document.getElementById('identityElectricCanvas');
   if (!stage || !graphic || !canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
   let width = 0, height = 0;
-  let dpr = window.devicePixelRatio || 1;
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let isVisible = false;
+  let isHovered = false;
+
+  let targetRotX = 0, targetRotY = 0;
+  let currentRotX = 0, currentRotY = 0;
 
   function resizeCanvas() {
     const rect = stage.getBoundingClientRect();
-    width = rect.width * 1.3;
-    height = Math.max(rect.height * 1.5, 260);
+    width = rect.width * 1.25;
+    height = Math.max(rect.height * 1.4, 250);
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -642,24 +596,16 @@ function initIdentityTitleAnimation() {
   }
 
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  // 3D Tilt Interaction
-  let targetRotX = 0, targetRotY = 0;
-  let currentRotX = 0, currentRotY = 0;
-  let isHovered = false;
+  window.addEventListener('resize', resizeCanvas, { passive: true });
 
   stage.addEventListener('mousemove', (e) => {
     isHovered = true;
     const rect = stage.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
-
-    targetRotY = dx * 10;
-    targetRotX = -dy * 8;
-  });
+    targetRotY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+    targetRotX = -((e.clientY - cy) / (rect.height / 2)) * 6;
+  }, { passive: true });
 
   stage.addEventListener('mouseenter', () => {
     isHovered = true;
@@ -672,12 +618,11 @@ function initIdentityTitleAnimation() {
     targetRotY = 0;
   });
 
-  // Electric Arcs & Blood Sparks
   const activeBolts = [];
   const bloodSparks = [];
 
   class LightningBolt {
-    constructor(startX, startY, endX, endY, color = '#ff1e42', maxLife = 12) {
+    constructor(startX, startY, endX, endY, color = '#ff1e42', maxLife = 9) {
       this.segments = [];
       this.color = color;
       this.life = maxLife;
@@ -690,7 +635,7 @@ function initIdentityTitleAnimation() {
       const dx = ex - sx;
       const dy = ey - sy;
       const dist = Math.hypot(dx, dy);
-      const steps = Math.max(4, Math.floor(dist / 16));
+      const steps = Math.max(3, Math.floor(dist / 22));
 
       let cx = sx;
       let cy = sy;
@@ -699,7 +644,7 @@ function initIdentityTitleAnimation() {
         const progress = i / steps;
         const nx = sx + dx * progress;
         const ny = sy + dy * progress;
-        const offset = (Math.random() - 0.5) * 24 * (1 - Math.abs(progress - 0.5) * 0.4);
+        const offset = (Math.random() - 0.5) * 20 * (1 - Math.abs(progress - 0.5) * 0.4);
         const normalX = -dy / dist;
         const normalY = dx / dist;
 
@@ -717,13 +662,11 @@ function initIdentityTitleAnimation() {
     draw(ctx) {
       if (this.segments.length < 2) return;
       const alpha = Math.max(0, this.life / this.maxLife);
-      ctx.save();
-      ctx.strokeStyle = this.color;
-      ctx.globalAlpha = alpha;
-      ctx.lineWidth = 2.2;
-      ctx.shadowColor = this.color;
-      ctx.shadowBlur = 10;
 
+      // Layer 1: Colored Wide Glow (without expensive shadowBlur)
+      ctx.strokeStyle = this.color;
+      ctx.globalAlpha = alpha * 0.4;
+      ctx.lineWidth = 4.5;
       ctx.beginPath();
       ctx.moveTo(this.segments[0].x, this.segments[0].y);
       for (let i = 1; i < this.segments.length; i++) {
@@ -731,13 +674,16 @@ function initIdentityTitleAnimation() {
       }
       ctx.stroke();
 
+      // Layer 2: Sharp Core White Bolt
       ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.6;
       ctx.globalAlpha = alpha * 0.95;
-      ctx.shadowBlur = 4;
+      ctx.beginPath();
+      ctx.moveTo(this.segments[0].x, this.segments[0].y);
+      for (let i = 1; i < this.segments.length; i++) {
+        ctx.lineTo(this.segments[i].x, this.segments[i].y);
+      }
       ctx.stroke();
-
-      ctx.restore();
     }
   }
 
@@ -745,9 +691,9 @@ function initIdentityTitleAnimation() {
     bloodSparks.push({
       x,
       y,
-      vx: (Math.random() - 0.5) * 2.2,
-      vy: -Math.random() * 2.2 - 0.4,
-      radius: Math.random() * 1.8 + 1,
+      vx: (Math.random() - 0.5) * 2.0,
+      vy: -Math.random() * 2.0 - 0.4,
+      radius: Math.random() * 1.5 + 0.8,
       alpha: 1,
       color: Math.random() > 0.35 ? '#ff1e42' : '#ffffff'
     });
@@ -758,40 +704,42 @@ function initIdentityTitleAnimation() {
     const cx = width / 2;
     const cy = height / 2;
 
-    const pommel = { x: cx, y: cy - height * 0.40 };
-    const skull = { x: cx, y: cy - height * 0.16 };
-    const tip = { x: cx, y: cy + height * 0.42 };
-    const leftWing = { x: cx - width * 0.38, y: cy - height * 0.05 };
-    const rightWing = { x: cx + width * 0.38, y: cy - height * 0.05 };
+    const pommel = { x: cx, y: cy - height * 0.38 };
+    const skull = { x: cx, y: cy - height * 0.15 };
+    const tip = { x: cx, y: cy + height * 0.40 };
+    const leftWing = { x: cx - width * 0.35, y: cy - height * 0.05 };
+    const rightWing = { x: cx + width * 0.35, y: cy - height * 0.05 };
 
-    const colors = ['#ff1e42', '#ff4d6d', '#ffffff', '#e11d48'];
+    const colors = ['#ff1e42', '#ff4d6d', '#ffffff'];
 
-    activeBolts.push(new LightningBolt(pommel.x, pommel.y, skull.x, skull.y, colors[Math.floor(Math.random() * colors.length)], 10));
-    activeBolts.push(new LightningBolt(skull.x, skull.y, tip.x, tip.y, '#ff1e42', 12));
+    activeBolts.push(new LightningBolt(pommel.x, pommel.y, skull.x, skull.y, colors[Math.floor(Math.random() * colors.length)], 8));
+    activeBolts.push(new LightningBolt(skull.x, skull.y, tip.x, tip.y, '#ff1e42', 10));
 
-    if (Math.random() > 0.25) {
-      activeBolts.push(new LightningBolt(skull.x, skull.y, leftWing.x, leftWing.y, '#ff3366', 10));
+    if (Math.random() > 0.3) {
+      activeBolts.push(new LightningBolt(skull.x, skull.y, leftWing.x, leftWing.y, '#ff3366', 8));
     }
-    if (Math.random() > 0.25) {
-      activeBolts.push(new LightningBolt(skull.x, skull.y, rightWing.x, rightWing.y, '#ff3366', 10));
+    if (Math.random() > 0.3) {
+      activeBolts.push(new LightningBolt(skull.x, skull.y, rightWing.x, rightWing.y, '#ff3366', 8));
     }
 
-    for (let i = 0; i < 6; i++) {
-      createBloodSpark(cx + (Math.random() - 0.5) * 80, cy + (Math.random() - 0.5) * 100);
+    for (let i = 0; i < 4; i++) {
+      createBloodSpark(cx + (Math.random() - 0.5) * 60, cy + (Math.random() - 0.5) * 80);
     }
   }
 
   setInterval(() => {
-    if (Math.random() < 0.7 || isHovered) {
+    if (isVisible && (Math.random() < 0.7 || isHovered)) {
       triggerElectricBurst();
     }
-  }, 2400);
+  }, 2600);
 
   function animate() {
-    currentRotX += (targetRotX - currentRotX) * 0.1;
-    currentRotY += (targetRotY - currentRotY) * 0.1;
+    if (!isVisible) return;
 
-    const scale = isHovered ? 1.03 : 1.0;
+    currentRotX += (targetRotX - currentRotX) * 0.12;
+    currentRotY += (targetRotY - currentRotY) * 0.12;
+
+    const scale = isHovered ? 1.025 : 1.0;
     graphic.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(${scale}, ${scale}, 1)`;
 
     ctx.clearRect(0, 0, width, height);
@@ -807,32 +755,39 @@ function initIdentityTitleAnimation() {
       const p = bloodSparks[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.alpha -= 0.025;
+      p.alpha -= 0.035;
 
       if (p.alpha <= 0) {
         bloodSparks.splice(i, 1);
         continue;
       }
 
-      ctx.save();
       ctx.globalAlpha = Math.max(0, p.alpha);
       ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 6;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
     }
 
     requestAnimationFrame(animate);
   }
 
-  animate();
+  // IntersectionObserver to pause loop when off-screen
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const wasVisible = isVisible;
+      isVisible = entry.isIntersecting;
+      if (isVisible && !wasVisible) {
+        requestAnimationFrame(animate);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  observer.observe(stage);
 }
 
 /* ========================================================= */
-/* 07b. DOMAIN 3D INTERACTIVE TILT ANIMATION ENGINE          */
+/* 10. DOMAIN 3D INTERACTIVE TILT (VIEWPORT-AWARE)           */
 /* ========================================================= */
 function initDomainTitleAnimation() {
   const stage = document.getElementById('domainStage');
@@ -842,23 +797,18 @@ function initDomainTitleAnimation() {
   let targetRotX = 0, targetRotY = 0;
   let currentRotX = 0, currentRotY = 0;
   let isHovered = false;
+  let isVisible = false;
 
   stage.addEventListener('mousemove', (e) => {
     isHovered = true;
     const rect = stage.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
+    targetRotY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+    targetRotX = -((e.clientY - cy) / (rect.height / 2)) * 6;
+  }, { passive: true });
 
-    targetRotY = dx * 10;
-    targetRotX = -dy * 8;
-  });
-
-  stage.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-
+  stage.addEventListener('mouseenter', () => { isHovered = true; });
   stage.addEventListener('mouseleave', () => {
     isHovered = false;
     targetRotX = 0;
@@ -866,20 +816,29 @@ function initDomainTitleAnimation() {
   });
 
   function animate() {
-    currentRotX += (targetRotX - currentRotX) * 0.1;
-    currentRotY += (targetRotY - currentRotY) * 0.1;
+    if (!isVisible) return;
+    currentRotX += (targetRotX - currentRotX) * 0.12;
+    currentRotY += (targetRotY - currentRotY) * 0.12;
 
-    const scale = isHovered ? 1.03 : 1.0;
+    const scale = isHovered ? 1.025 : 1.0;
     graphic.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(${scale}, ${scale}, 1)`;
 
     requestAnimationFrame(animate);
   }
 
-  animate();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const wasVisible = isVisible;
+      isVisible = entry.isIntersecting;
+      if (isVisible && !wasVisible) requestAnimationFrame(animate);
+    });
+  }, { threshold: 0.05 });
+
+  observer.observe(stage);
 }
 
 /* ========================================================= */
-/* 08. SUMMON 3D INTERACTIVE TILT ANIMATION ENGINE           */
+/* 11. SUMMON 3D INTERACTIVE TILT (VIEWPORT-AWARE)           */
 /* ========================================================= */
 function initSummonTitleAnimation() {
   const stage = document.getElementById('summonStage');
@@ -889,23 +848,18 @@ function initSummonTitleAnimation() {
   let targetRotX = 0, targetRotY = 0;
   let currentRotX = 0, currentRotY = 0;
   let isHovered = false;
+  let isVisible = false;
 
   stage.addEventListener('mousemove', (e) => {
     isHovered = true;
     const rect = stage.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
+    targetRotY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+    targetRotX = -((e.clientY - cy) / (rect.height / 2)) * 6;
+  }, { passive: true });
 
-    targetRotY = dx * 10;
-    targetRotX = -dy * 8;
-  });
-
-  stage.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-
+  stage.addEventListener('mouseenter', () => { isHovered = true; });
   stage.addEventListener('mouseleave', () => {
     isHovered = false;
     targetRotX = 0;
@@ -913,14 +867,23 @@ function initSummonTitleAnimation() {
   });
 
   function animate() {
-    currentRotX += (targetRotX - currentRotX) * 0.1;
-    currentRotY += (targetRotY - currentRotY) * 0.1;
+    if (!isVisible) return;
+    currentRotX += (targetRotX - currentRotX) * 0.12;
+    currentRotY += (targetRotY - currentRotY) * 0.12;
 
-    const scale = isHovered ? 1.03 : 1.0;
+    const scale = isHovered ? 1.025 : 1.0;
     graphic.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(${scale}, ${scale}, 1)`;
 
     requestAnimationFrame(animate);
   }
 
-  animate();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const wasVisible = isVisible;
+      isVisible = entry.isIntersecting;
+      if (isVisible && !wasVisible) requestAnimationFrame(animate);
+    });
+  }, { threshold: 0.05 });
+
+  observer.observe(stage);
 }

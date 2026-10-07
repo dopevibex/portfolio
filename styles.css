@@ -39,6 +39,7 @@ html {
   color: #e4e4e7;
   font-family: var(--font-body);
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 body.demonic-body {
@@ -49,12 +50,29 @@ body.demonic-body {
   position: relative;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware Compositing & GPU Promotion */
+.hero-deathmetal-floating-wrap,
+.top-navbar,
+.nav-inner-pill,
+.marquee-track,
+.arsenal-item-card,
+.chronicle-card,
+.project-card,
+.demonic-stage-3d,
+.title-sword-3d-asset {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 button {
@@ -662,6 +680,13 @@ img, svg {
 .section-block {
   padding: 6rem 0;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
+}
+
+#hero,
+#about {
+  content-visibility: visible;
 }
 
 .section-container {
@@ -2693,116 +2718,5 @@ img, svg {
   }
 }
 
-/* ========================================================= */
-/* 09. 3D GAME ARENA FOUNDATION (STAGE 1)                    */
-/* ========================================================= */
-.game3d-section {
-  position: relative;
-  padding: 6rem 0 7rem;
-  background: radial-gradient(circle at 50% 15%, rgba(20, 6, 12, 0.7) 0%, rgba(5, 5, 8, 1) 75%);
-  border-top: 1px solid rgba(255, 30, 66, 0.12);
-  border-bottom: 1px solid rgba(255, 30, 66, 0.12);
-  overflow: hidden;
-}
 
-.game3d-viewport-card {
-  position: relative;
-  background: #08070b;
-  border: 1px solid rgba(255, 30, 66, 0.22);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 30, 66, 0.08);
-  margin-top: 1.5rem;
-}
-
-.game3d-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1.4rem;
-  background: rgba(12, 10, 16, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(10px);
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.game3d-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono, monospace);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #f43f5e;
-  background: rgba(244, 63, 94, 0.1);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  border: 1px solid rgba(244, 63, 94, 0.25);
-}
-
-.game3d-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ff1e42;
-  box-shadow: 0 0 10px #ff1e42, 0 0 18px rgba(255, 30, 66, 0.6);
-  animation: game3dPulse 2s infinite ease-in-out;
-}
-
-@keyframes game3dPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.35); opacity: 0.6; }
-}
-
-.game3d-controls-hint {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.74rem;
-  color: #71717a;
-  letter-spacing: 0.5px;
-}
-
-.game3d-reset-cam-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
-  color: #d4d4d8;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.game3d-reset-cam-btn:hover {
-  background: rgba(255, 30, 66, 0.15);
-  border-color: rgba(255, 30, 66, 0.5);
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(255, 30, 66, 0.25);
-}
-
-.game3d-canvas-container {
-  position: relative;
-  width: 100%;
-  height: clamp(480px, 62vh, 680px);
-  background: #040106;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-}
-
-.game3d-canvas-container:active {
-  cursor: grabbing;
-}
-
-.game3d-canvas-container canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  outline: none;
-}
 
