@@ -525,17 +525,67 @@ function initClipboardAndForms() {
   }
 }
 
-window.handleFormSubmit = function (e) {
+window.handleFormSubmit = async function (e) {
   e.preventDefault();
-  const name = document.getElementById('formName').value;
+  const nameInput = document.getElementById('formName');
+  const emailInput = document.getElementById('formEmail');
+  const msgInput = document.getElementById('formMessage');
   const feedback = document.getElementById('formFeedback');
+  const submitBtn = document.getElementById('formSubmitBtn');
 
-  if (feedback) {
-    feedback.innerHTML = `<span style="color:#10b981;">[✓] Message dispatched from ${escapeHTML(name)}. DOPE will respond promptly.</span>`;
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = msgInput.value.trim();
+
+  if (!name || !email || !message) return false;
+
+  const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Sending...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
   }
 
-  showToast('Transmission Dispatched Successfully');
-  document.getElementById('nexusContactForm').reset();
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/dopevibex@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: message,
+        _subject: `New Portfolio Message from ${name}`
+      })
+    });
+
+    if (res.ok) {
+      if (feedback) {
+        feedback.innerHTML = `<span style="color:#10b981; font-weight:500;">[✓] Message sent successfully! I'll get back to you soon.</span>`;
+        setTimeout(() => {
+          if (feedback) feedback.innerHTML = '';
+        }, 4500);
+      }
+      showToast('Message Sent Successfully');
+      document.getElementById('nexusContactForm').reset();
+    } else {
+      throw new Error('Server returned error');
+    }
+  } catch (err) {
+    if (feedback) {
+      feedback.innerHTML = `<span style="color:#ff1e42; font-weight:500;">[!] Direct delivery error. You can email directly at <a href="mailto:dopevibex@gmail.com" style="color:#ffffff; text-decoration:underline;">dopevibex@gmail.com</a>.</span>`;
+      setTimeout(() => {
+        if (feedback) feedback.innerHTML = '';
+      }, 6000);
+    }
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHTML;
+    }
+  }
+
   return false;
 };
 
