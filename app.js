@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initIdentityTitleAnimation();
   initDomainTitleAnimation();
   initSummonTitleAnimation();
+  initContentProtection();
 });
 
 /* ========================================================= */
@@ -936,4 +937,88 @@ function initSummonTitleAnimation() {
   }, { threshold: 0.05 });
 
   observer.observe(stage);
+}
+
+/* ========================================================= */
+/* 12. SCRIPT-KITTENS STYLE CONTENT PROTECTION SYSTEM        */
+/* ========================================================= */
+function initContentProtection() {
+  let lastToastTime = 0;
+
+  function triggerProtectionToast(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    const now = Date.now();
+    if (now - lastToastTime < 1500) return false;
+    lastToastTime = now;
+
+    let container = document.getElementById('contentProtectContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'contentProtectContainer';
+      container.className = 'content-protect-container';
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'content-protect-toast';
+    toast.innerHTML = `
+      <div class="protect-toast-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div class="protect-toast-text">
+        <span class="protect-toast-title">Content Protected</span>
+        <span class="protect-toast-desc">This action is not allowed on DOPE.</span>
+      </div>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('protect-toast-fade-out');
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 350);
+    }, 3000);
+
+    return false;
+  }
+
+  // 1. Disable Right Click
+  document.addEventListener('contextmenu', (e) => {
+    triggerProtectionToast(e);
+  }, true);
+
+  // 2. Disable DevTools / Inspect Shortcuts
+  document.addEventListener('keydown', (e) => {
+    // F12
+    if (e.key === 'F12' || e.keyCode === 123) {
+      triggerProtectionToast(e);
+      return false;
+    }
+
+    // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Devtools)
+    if (e.ctrlKey && e.shiftKey && (
+      e.key === 'I' || e.key === 'i' || 
+      e.key === 'J' || e.key === 'j' || 
+      e.key === 'C' || e.key === 'c' || 
+      e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67
+    )) {
+      triggerProtectionToast(e);
+      return false;
+    }
+
+    // Ctrl+U (View Source) or Ctrl+S (Save Page)
+    if (e.ctrlKey && (
+      e.key === 'u' || e.key === 'U' || 
+      e.key === 's' || e.key === 'S' || 
+      e.keyCode === 85 || e.keyCode === 83
+    )) {
+      triggerProtectionToast(e);
+      return false;
+    }
+  }, true);
 }
