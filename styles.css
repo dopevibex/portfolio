@@ -271,18 +271,223 @@ img, svg {
   text-decoration: none;
 }
 
-.nav-crown-logo-img {
-  width: 44px;
-  height: 26px;
-  object-fit: contain;
-  mix-blend-mode: screen;
-  filter: none;
-  transition: transform 0.3s ease;
+/* Dragon D Demonic Awakening Emblem */
+.nav-d-emblem-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.nav-logo:hover .nav-crown-logo-img {
+.nav-logo:hover .nav-d-emblem-wrap {
   transform: scale(1.08);
-  filter: none;
+}
+
+.d-emblem-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: opacity, clip-path, filter;
+}
+
+.d-emblem-idle {
+  z-index: 1;
+  opacity: 1;
+}
+
+.d-emblem-active {
+  z-index: 2;
+  animation: dEmblemEyeAwaken 4.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.d-emblem-aura-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(255, 30, 66, 0.75) 0%, rgba(255, 30, 66, 0.22) 40%, transparent 70%);
+  animation: dEmblemAuraPulse 4.1s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Subtle Crimson Micro-Particles Floating During Awakening */
+.d-emblem-particles {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+.d-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #ff2a4b;
+  box-shadow: 0 0 5px #ff1e42, 0 0 8px rgba(255, 30, 66, 0.8);
+  opacity: 0;
+}
+
+.d-particle.p1 {
+  width: 3px;
+  height: 3px;
+  left: 30%;
+  top: 60%;
+  animation: dEmblemParticle1 4.1s ease-in-out infinite;
+}
+
+.d-particle.p2 {
+  width: 2.5px;
+  height: 2.5px;
+  left: 65%;
+  top: 55%;
+  animation: dEmblemParticle2 4.1s ease-in-out infinite;
+}
+
+.d-particle.p3 {
+  width: 2px;
+  height: 2px;
+  left: 48%;
+  top: 70%;
+  animation: dEmblemParticle3 4.1s ease-in-out infinite;
+}
+
+/* Eye Awakening Cycle: 1.5s Idle -> 0.5s Buildup -> 0.4s Opening -> 1.2s Open & Pulse -> 0.5s Closing */
+@keyframes dEmblemEyeAwaken {
+  /* 0s to 1.5s: Idle / Closed State */
+  0%, 36.6% {
+    opacity: 0;
+    clip-path: polygon(50% 15%, 50% 15%, 50% 85%, 50% 85%);
+    filter: drop-shadow(0 0 0px transparent);
+    transform: scale(1);
+  }
+  
+  /* 1.5s to 2.0s: Energy Buildup & Smoke Gathering */
+  44% {
+    opacity: 0.25;
+    clip-path: polygon(48% 14%, 52% 14%, 52% 86%, 48% 86%);
+    filter: drop-shadow(0 0 3px rgba(255, 30, 66, 0.4));
+  }
+  48.8% {
+    opacity: 0.55;
+    clip-path: polygon(46% 12%, 54% 12%, 54% 88%, 46% 88%);
+    filter: drop-shadow(0 0 6px rgba(255, 30, 66, 0.7));
+  }
+
+  /* 2.0s to 2.4s: Eye Opening Transition */
+  53.5% {
+    opacity: 0.9;
+    clip-path: polygon(25% 6%, 75% 6%, 75% 94%, 25% 94%);
+    filter: drop-shadow(0 0 9px rgba(255, 30, 66, 0.9)) drop-shadow(0 0 3px #ff1e42);
+  }
+  58.5% {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    filter: drop-shadow(0 0 10px rgba(255, 30, 66, 0.95)) drop-shadow(0 0 4px #ff1e42);
+    transform: scale(1);
+  }
+
+  /* 2.4s to 3.6s: Fully Activated with Subtle Light Pulse & Breathing */
+  73.2% {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    filter: drop-shadow(0 0 13px rgba(255, 30, 66, 1)) drop-shadow(0 0 6px #ff3b5c);
+    transform: scale(1.025);
+  }
+  87.8% {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    filter: drop-shadow(0 0 9px rgba(255, 30, 66, 0.9)) drop-shadow(0 0 4px #ff1e42);
+    transform: scale(1);
+  }
+
+  /* 3.6s to 4.1s: Smooth Closing */
+  94.5% {
+    opacity: 0.4;
+    clip-path: polygon(47% 14%, 53% 14%, 53% 86%, 47% 86%);
+    filter: drop-shadow(0 0 4px rgba(255, 30, 66, 0.5));
+  }
+  100% {
+    opacity: 0;
+    clip-path: polygon(50% 15%, 50% 15%, 50% 85%, 50% 85%);
+    filter: drop-shadow(0 0 0px transparent);
+    transform: scale(1);
+  }
+}
+
+@keyframes dEmblemAuraPulse {
+  0%, 36.6% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  48.8% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  58.5% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+  73.2% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+  87.8% {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+}
+
+@keyframes dEmblemParticle1 {
+  0%, 48.8% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  58.5% { opacity: 0.8; transform: translate(-3px, -6px) scale(1); }
+  73.2% { opacity: 0.9; transform: translate(-5px, -12px) scale(1.1); }
+  87.8% { opacity: 0.3; transform: translate(-7px, -18px) scale(0.6); }
+  92%, 100% { opacity: 0; transform: translate(-8px, -22px) scale(0.2); }
+}
+
+@keyframes dEmblemParticle2 {
+  0%, 48.8% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  58.5% { opacity: 0.85; transform: translate(3px, -5px) scale(1); }
+  73.2% { opacity: 0.95; transform: translate(6px, -11px) scale(1.15); }
+  87.8% { opacity: 0.35; transform: translate(8px, -16px) scale(0.5); }
+  92%, 100% { opacity: 0; transform: translate(9px, -20px) scale(0.2); }
+}
+
+@keyframes dEmblemParticle3 {
+  0%, 52% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  60% { opacity: 0.7; transform: translate(1px, -4px) scale(0.9); }
+  73.2% { opacity: 0.85; transform: translate(0px, -10px) scale(1); }
+  87.8% { opacity: 0.25; transform: translate(-1px, -15px) scale(0.4); }
+  92%, 100% { opacity: 0; transform: translate(-2px, -18px) scale(0.1); }
+}
+
+.nav-logo:hover .d-emblem-active {
+  animation-play-state: paused;
+  opacity: 1;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  filter: drop-shadow(0 0 14px rgba(255, 30, 66, 1)) drop-shadow(0 0 6px #ff3b5c);
+  transform: scale(1.04);
+}
+
+.nav-logo:hover .d-emblem-aura-glow {
+  animation-play-state: paused;
+  opacity: 1;
+  transform: scale(1.25);
 }
 
 .nav-logo-title-gothic {
@@ -537,12 +742,9 @@ img, svg {
   gap: 10px;
 }
 
-.drawer-crown-img {
-  width: 40px;
-  height: 24px;
-  object-fit: contain;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 8px rgba(255, 30, 66, 0.8));
+.drawer-brand .nav-d-emblem-wrap {
+  width: 34px;
+  height: 34px;
 }
 
 .drawer-title-gothic {
@@ -2314,9 +2516,9 @@ a.channel-link-card:hover .channel-action-btn {
     padding: 5px 10px;
   }
 
-  .nav-crown-logo-img {
-    width: 36px;
-    height: 22px;
+  .nav-d-emblem-wrap {
+    width: 30px;
+    height: 30px;
   }
 
   .nav-logo-title-gothic {
